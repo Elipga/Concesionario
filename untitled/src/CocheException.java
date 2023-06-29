@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public class CocheException {
+public class CocheException extends Exception{
+    public CocheException(String message) {
+        super(message);
+    }
 }

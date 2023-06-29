@@ -12,20 +12,26 @@ abstract class Coche {
     private EstadoCoche estado;
     ArrayList<Reparacion> reparaciones;
 
-    public Coche(String marca, String modelo, String matricula, EstadoCoche estado) throws NullReparacion {
+    public Coche(String marca, String modelo, String matricula, EstadoCoche estado) throws NullReparacion, CocheException {
         this.marca = marca;
-        if(marca == null) throw new CocheException("Debe introducir la marca");
-        if(marca == )
+        if(marca == null) throw new CocheException("La marca no puede ser null");
+        if(marca == "") throw new CocheException("La marca no puede estar vacía");
         this.modelo = modelo;
+        if(modelo == null) throw new CocheException("El modelo no puede ser null");
+        if(modelo == "") throw new CocheException("El modelo no puede estar vacío");
         this.matricula = matricula;
+        if(matricula == null) throw new CocheException("La matrícula no puede ser null");
+        if(matricula == "") throw new CocheException("La matrícula no puede estar vacía");
         this.estado = estado;
+        if(estado == null) throw new CocheException("El estado no puede ser null");
         this.reparaciones = new ArrayList<>();
-        //if (this.reparaciones == null) throw new NullReparacion("El array no puede ser null");
+        if (this.reparaciones == null) throw new NullReparacion("El array no puede ser null");
     }
 
     //metodo para añadir una reparacion al arraylist
 
     public void anyadirReparacion(Reparacion r){
+
         reparaciones.add(r);
     }
 

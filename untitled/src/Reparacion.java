@@ -16,16 +16,19 @@ public class Reparacion {
 
     //Getters para imprimir el historial de reparaciones
     public TipoReparacion getTipoReparacion() {
+
         return tipo;
     }
 
     public boolean isResuelta() {
+
         return resuelta;
     }
 
     //Metodo cuando un coche está reparado
 
     public boolean cocheReparado() {
+        //cambiar tambien el estado a reparado
         return resuelta = true;
     }
 

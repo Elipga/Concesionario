@@ -1,5 +1,5 @@
 public class Main {
-    public static void main(String[] args) throws NullReparacion {
+    public static void main(String[] args) throws NullReparacion, CocheException {
 
         CocheTodoterreno l = new CocheTodoterreno("Dacia", "Y56", "gh6556", EstadoCoche.enVenta);
 
@@ -20,8 +20,6 @@ public class Main {
 
 
 
-
-        //Coche k = new Coche ("seat", "23","jj", TipoCoche.industrial,EstadoCoche.enVenta);
 
 
 
