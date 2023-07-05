@@ -2,17 +2,24 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 public class Exposicion {
-    private int numeroExposcion;
+    private String numeroExposcion;
     private String direccion;
     private String telefono;
 
     private HashSet<Coche> cochesEnExposicion;
 
 
-    public Exposicion(int numeroExposcion, String direccion, String telefono) {
+    public Exposicion(String numeroExposcion, String direccion, String telefono) throws NotNullException, IsEmptyException, InvalidException {
         this.numeroExposcion = numeroExposcion;
+        if(numeroExposcion == null) throw new NotNullException("Número de exposición no puede ser null");
+        if(numeroExposcion == "") throw new IsEmptyException("Número de exposición no puede estar vacío");
         this.direccion = direccion;
+        if(direccion == null) throw new NotNullException("Dirección no puede ser null");
+        if(direccion == "") throw new IsEmptyException("Dirección no puede estar vacía");
         this.telefono = telefono;
+        if(telefono == null) throw new NotNullException("Dirección no puede ser null");
+        if(telefono == "") throw new IsEmptyException("Dirección no puede estar vacía");
+        if((telefono.length() != 9)) throw new InvalidException("Teléfono debe tener 9 dígitos");
         this.cochesEnExposicion = new HashSet<Coche>();
     }
 

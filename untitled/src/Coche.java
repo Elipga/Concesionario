@@ -11,23 +11,24 @@ abstract class Coche {
 
 
 
-    public Coche(String marca, String modelo, String matricula, EstadoCoche estado) throws NullReparacion, CocheException {
+    //Constructor y validaciones
+    public Coche(String marca, String modelo, String matricula, EstadoCoche estado) throws NotNullException, IsEmptyException {
         this.marca = marca;
-        if(marca == null) throw new CocheException("La marca no puede ser null");
-        if(marca == "") throw new CocheException("La marca no puede estar vacía");
+        if(marca == null) throw new NotNullException("La marca no puede ser null");
+        if(marca == "") throw new IsEmptyException("La marca no puede estar vacía");
         this.modelo = modelo;
-        if(modelo == null) throw new CocheException("El modelo no puede ser null");
-        if(modelo == "") throw new CocheException("El modelo no puede estar vacío");
+        if(modelo == null) throw new NotNullException("El modelo no puede ser null");
+        if(modelo == "") throw new IsEmptyException("El modelo no puede estar vacío");
         this.matricula = matricula;
-        if(matricula == null) throw new CocheException("La matrícula no puede ser null");
-        if(matricula == "") throw new CocheException("La matrícula no puede estar vacía");
+        if(matricula == null) throw new NotNullException("La matrícula no puede ser null");
+        if(matricula == "") throw new IsEmptyException("La matrícula no puede estar vacía");
         this.estado = estado;
-        if(estado == null) throw new CocheException("El estado no puede ser null");
+        if(estado == null) throw new NotNullException("El estado no puede ser null");
         this.reparaciones = new LinkedList<>();
-        if (this.reparaciones == null) throw new NullReparacion("El array no puede ser null");
+        if (this.reparaciones == null) throw new NotNullException("El array no puede ser null");
     }
 
-
+    //ToString para imprimir los atributos de los coches
     public String toStringCoche() {
         return "Coche{" +
                 "marca='" + marca + '\'' +
@@ -38,6 +39,7 @@ abstract class Coche {
     }
 
     public String getMatricula() {
+
         return matricula;
     }
 
@@ -49,8 +51,7 @@ abstract class Coche {
         estado= EstadoCoche.enReparacion;
     }
 
-    //metodo para cambiar el estado de un coche a en reparacion
-
+    //metodo para saber el estado de un coche
 
     public void estadoCoche() {
         if (estado == EstadoCoche.enVenta) {
@@ -68,6 +69,8 @@ abstract class Coche {
         }
     }
 
+    //Método para obtener el historial de reparaciones ordenados por fecha
+
     public void historialReparaciones() {
 
             Comparator<Reparacion> comparador = new Comparator<Reparacion>() {
@@ -82,6 +85,23 @@ abstract class Coche {
                 System.out.println(item.toString());
 
             }
+    }
+
+    public void reparacionReparada(Reparacion r) {
+        //cambiar tambien el estado a reparado
+        r.setResuelta(true);
+
+        int contador = 0;
+        for (Reparacion item: reparaciones){
+            if(item.isResuelta()==true){
+                contador = contador + 1;
+            };
+            if (contador == reparaciones.size()){
+                estado= EstadoCoche.reparado;
+            }
+
+        }
+
     }
 
 

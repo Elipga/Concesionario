@@ -3,7 +3,6 @@ enum EstadoCoche {
     enVenta,
     reservado,
     vendido,
-
     reparado
 
 }

@@ -1,22 +1,33 @@
 import java.util.Date;
 
 public class Reparacion {
-    private TipoReparacion tipo;
+    private TipoReparacion tipoReparacion;
     private boolean resuelta;
 
     private Date fechaReparacion;
 
 
-    public Reparacion(TipoReparacion tipo, boolean resuelta) {
-        this.tipo = tipo;
+    public Reparacion(TipoReparacion tipoReparacion, boolean resuelta) throws NotNullException, IsEmptyException, InvalidException {
+        this.tipoReparacion = tipoReparacion;
+        if(tipoReparacion == null) throw new NotNullException("Tipo de reparación no puede ser null");
+        if(tipoReparacion.equals("")) throw new IsEmptyException("Tipo de reparación no puede estar vacío");
         this.resuelta = resuelta;
+        if((resuelta != true) && (resuelta != false)) throw new InvalidException("Resuelta debe ser true o false");
         this.fechaReparacion = new Date();
     }
+
+    //setter para el metodo reparacionReparada de la clase coche
+
+    public void setResuelta(boolean resuelta) {
+        this.resuelta = resuelta;
+    }
+
+
 
     //Getters y to String para imprimir el historial de reparaciones
     public TipoReparacion getTipoReparacion() {
 
-        return tipo;
+        return tipoReparacion;
     }
 
     public Date getFechaReparacion() {
@@ -31,7 +42,7 @@ public class Reparacion {
     @Override
     public String toString() {
         return "Reparacion{" +
-                "tipo=" + tipo +
+                "tipo=" + tipoReparacion +
                 ", resuelta=" + resuelta +
                 ", fechaReparacion=" + fechaReparacion +
                 '}';
@@ -39,11 +50,6 @@ public class Reparacion {
 
     //Metodo cuando un coche está reparado
 
-    public boolean cocheReparado() {
-        //cambiar tambien el estado a reparado
 
-        return resuelta = true;
-
-    }
 
 }
