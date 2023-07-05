@@ -13,11 +13,14 @@ public class Reparacion {
         this.fechaReparacion = new Date();
     }
 
-
-    //Getters para imprimir el historial de reparaciones
+    //Getters y to String para imprimir el historial de reparaciones
     public TipoReparacion getTipoReparacion() {
 
         return tipo;
+    }
+
+    public Date getFechaReparacion() {
+        return fechaReparacion;
     }
 
     public boolean isResuelta() {
@@ -25,18 +28,22 @@ public class Reparacion {
         return resuelta;
     }
 
+    @Override
+    public String toString() {
+        return "Reparacion{" +
+                "tipo=" + tipo +
+                ", resuelta=" + resuelta +
+                ", fechaReparacion=" + fechaReparacion +
+                '}';
+    }
+
     //Metodo cuando un coche está reparado
 
     public boolean cocheReparado() {
         //cambiar tambien el estado a reparado
+
         return resuelta = true;
-    }
 
-    //Metodo para conocer la informacion de una reparacion (LO HE PUESTO PARA COMPROBAR: NO LO PIDE EL ENUNCIADO)
-
-    public void reparacionInfo() {
-        System.out.println(tipo);
-        System.out.println(resuelta);
     }
 
 }

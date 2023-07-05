@@ -2,6 +2,8 @@ enum EstadoCoche {
     enReparacion,
     enVenta,
     reservado,
-    vendido
+    vendido,
+
+    reparado
 
 }
