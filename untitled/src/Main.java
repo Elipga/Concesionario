@@ -5,7 +5,7 @@ public class Main {
         CocheTodoterreno k = new CocheTodoterreno("Dacia", "Y56", "ksdjffs", EstadoCoche.enVenta,23,45);
         CocheTodoterreno u = new CocheTodoterreno("Dacia", "Y56", "okdnn", EstadoCoche.enVenta,23,65);
         CocheIndustrial o = new CocheIndustrial("Dacia", "Y56", "okdnn", EstadoCoche.enVenta,76,56);
-        CocheTurismo p = new CocheTurismo("Dacia", "Y56", "okdnn", EstadoCoche.enVenta,65,78);
+        CocheTurismo p = new CocheTurismo("Dacia", "Y56", "okdnn", EstadoCoche.reservado,65,78);
 
 
         Reparacion r = new Reparacion(TipoReparacion.electrica, false);
@@ -27,8 +27,9 @@ public class Main {
         c.anyadirCoche("Coche 4", o);
         c.anyadirCoche("Coche 5", p);
 
-        //c.historialCoches();
+        c.historialCoches();
         c.historialCochesEnVenta();
+        c.historialCochesReservados();
 
     }
 
