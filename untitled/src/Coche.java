@@ -12,7 +12,7 @@ abstract class Coche {
 
 
     //Constructor y validaciones
-    public Coche(String marca, String modelo, String matricula, EstadoCoche estado) throws NotNullException, IsEmptyException {
+    public Coche(String marca, String modelo, String matricula, EstadoCoche estado, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
         this.marca = marca;
         if(marca == null) throw new NotNullException("La marca no puede ser null");
         if(marca == "") throw new IsEmptyException("La marca no puede estar vacía");
@@ -24,16 +24,23 @@ abstract class Coche {
         if(matricula == "") throw new IsEmptyException("La matrícula no puede estar vacía");
         this.estado = estado;
         if(estado == null) throw new NotNullException("El estado no puede ser null");
+        this.precioCompra = precioCompra;
+        if(precioCompra < 0) throw new InvalidException("El precio de compra debe ser superior a 0");
+        this.precioVenta = precioVenta;
+        if(precioVenta < 0) throw new InvalidException("El precio de venta debe ser superior a 0");
         this.reparaciones = new LinkedList<>();
         if (this.reparaciones == null) throw new NotNullException("El array no puede ser null");
     }
 
     //ToString para imprimir los atributos de los coches
+
     public String toStringCoche() {
         return "Coche{" +
                 "marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", matricula='" + matricula + '\'' +
+                ", precioCompra=" + precioCompra +
+                ", precioVenta=" + precioVenta +
                 ", estado=" + estado +
                 '}';
     }
@@ -43,6 +50,9 @@ abstract class Coche {
         return matricula;
     }
 
+    public EstadoCoche getEstado() {
+        return estado;
+    }
     //metodo para añadir una reparacion al arraylist
 
     public void anyadirReparacion(Reparacion r){
