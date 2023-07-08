@@ -6,7 +6,6 @@ public class Exposicion {
     private String direccion;
     private String telefono;
 
-    private HashSet<Coche> cochesEnExposicion;
 
 
     public Exposicion(String numeroExposcion, String direccion, String telefono) throws NotNullException, IsEmptyException, InvalidException {
@@ -20,7 +19,6 @@ public class Exposicion {
         if(telefono == null) throw new NotNullException("Dirección no puede ser null");
         if(telefono == "") throw new IsEmptyException("Dirección no puede estar vacía");
         if((telefono.length() != 9)) throw new InvalidException("Teléfono debe tener 9 dígitos");
-        this.cochesEnExposicion = new HashSet<Coche>();
     }
 
 
@@ -36,13 +34,13 @@ public class Exposicion {
         return cochesEnExposicion;
     }
 
-    public void anyadirCocheAExposicion(Coche c) {
+    /*public void anyadirCocheAExposicion(Coche c) {
         cochesEnExposicion.add(c);
-    }
+    }*/
 
-    public void borrarCocheExposicion(Coche c){
+    /*public void borrarCocheExposicion(Coche c){
         cochesEnExposicion.remove(c);
-    }
+    }*/
 
     public void visualizarExposicion(){
         System.out.println(toStringExposicion());

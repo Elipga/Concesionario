@@ -29,9 +29,7 @@ public class Main {
 
         c.historialCoches();
         c.historialCochesEnVenta();
-        c.historialCochesReservados();
+
 
     }
-
-
 }

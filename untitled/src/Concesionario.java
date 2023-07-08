@@ -37,46 +37,81 @@ public class Concesionario {
 
     public void historialCochesEnVenta() {
         System.out.println("Listado coches en venta");
+        for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
+            if (valor.getEstado() == EstadoCoche.enVenta){ //si el estado es enVenta se añade al HashSet y se imprime
+                System.out.println(valor.toStringCoche());
+            }
+        }
+    }
+
+    public HashSet<Coche> listaCochesEnVenta() {
         HashSet<Coche> cochesEnVenta = new HashSet<>();
         for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
             if (valor.getEstado() == EstadoCoche.enVenta){ // si el estado es enVenta se añade al HashSet y se imprime
                 cochesEnVenta.add(valor);
-                System.out.println(valor.toStringCoche());
+                valor.toStringCoche();
             }
         }
+        return cochesEnVenta;
     }
 
     public void historialCochesReservados() {
         System.out.println("Listado coches Reservados");
-        HashSet<Coche> cochesReservados = new HashSet<>();
-        for (Coche valor:cochesConcesionario.values()) {
-            if (valor.getEstado() == EstadoCoche.reservado) {
-                cochesReservados.add(valor);
+        for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
+            if (valor.getEstado() == EstadoCoche.reservado){ //si el estado es enVenta se añade al HashSet y se imprime
                 System.out.println(valor.toStringCoche());
             }
         }
+    }
+
+    public HashSet<Coche> listaCochesReservados() {
+        HashSet<Coche> cochesReservados = new HashSet<>();
+        for (Coche valor:cochesConcesionario.values()) {
+            if (valor.getEstado() == EstadoCoche.reservado){
+                cochesReservados.add(valor);
+                valor.toStringCoche();
+            }
+        }
+        return cochesReservados;
     }
 
     public void historialCochesEnReparacion() {
         System.out.println("Listado coches en reparación");
+        for (Coche valor:cochesConcesionario.values()) {
+            if (valor.getEstado() == EstadoCoche.enReparacion){
+                System.out.println(valor.toStringCoche());
+            }
+        }
+    }
+
+    public HashSet<Coche> listaCochesEnReparacion() {
         HashSet<Coche> cochesEnReparacion = new HashSet<>();
         for (Coche valor:cochesConcesionario.values()) {
             if (valor.getEstado() == EstadoCoche.enReparacion){
                 cochesEnReparacion.add(valor);
-                System.out.println(valor.toStringCoche());
+                valor.toStringCoche();
             }
         }
+        return cochesEnReparacion;
     }
 
     public void historialCochesVendidos() {
         System.out.println("Listado coches vendidos");
-        HashSet<Coche> cochesVendidos = new HashSet<>();
         for (Coche valor:cochesConcesionario.values()) {
             if (valor.getEstado() == EstadoCoche.vendido){
-                cochesVendidos.add(valor);
                 System.out.println(valor.toStringCoche());
             }
         }
     }
 
+    public HashSet<Coche> listaCochesVendidos() {
+        HashSet<Coche> cochesVendidos= new HashSet<>();
+        for (Coche valor:cochesConcesionario.values()) {
+            if (valor.getEstado() == EstadoCoche.vendido){
+                cochesVendidos.add(valor);
+                valor.toStringCoche();
+            }
+        }
+        return cochesVendidos;
+    }
 }
