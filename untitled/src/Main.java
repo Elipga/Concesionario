@@ -11,24 +11,13 @@ public class Main {
         Reparacion r = new Reparacion(TipoReparacion.electrica, false);
         Reparacion e = new Reparacion(TipoReparacion.deChapa, false);
 
-        l.anyadirReparacion(r);
-        l.anyadirReparacion(e);
-
-        l.reparacionReparada(r);
-        l.reparacionReparada(e);
-
-        l.historialReparaciones();
+        Exposicion a = new Exposicion("1", "francisco Aguirre", "678947362");
 
         Concesionario c = new Concesionario();
 
-        c.anyadirCoche("coche 1", l);
-        c.anyadirCoche("coche 2", k);
-        c.anyadirCoche("Coche 3", u);
-        c.anyadirCoche("Coche 4", o);
-        c.anyadirCoche("Coche 5", p);
+        c.anyadirExposicion("Exposicion 1", a);
 
-        c.historialCoches();
-        c.historialCochesEnVenta();
+        l.anyadirAExposicion(a);
 
 
     }

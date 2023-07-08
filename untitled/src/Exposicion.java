@@ -1,10 +1,10 @@
 import java.util.HashSet;
-import java.util.LinkedList;
 
 public class Exposicion {
     private String numeroExposcion;
     private String direccion;
     private String telefono;
+
 
 
 
@@ -30,17 +30,18 @@ public class Exposicion {
                 '}';
     }
 
-    public HashSet<Coche> getCochesEnExposicion() {
-        return cochesEnExposicion;
+    public String getNumeroExposcion() {
+        return numeroExposcion;
     }
 
-    /*public void anyadirCocheAExposicion(Coche c) {
-        cochesEnExposicion.add(c);
-    }*/
+    public void anyadirCocheAExposicion(Coche c) {
 
-    /*public void borrarCocheExposicion(Coche c){
+        cochesConcesionario.add(c);
+    }
+
+    public void borrarCocheExposicion(Coche c){
         cochesEnExposicion.remove(c);
-    }*/
+    }
 
     public void visualizarExposicion(){
         System.out.println(toStringExposicion());
@@ -63,10 +64,5 @@ public class Exposicion {
             else System.out.println("El coche no está en la exposición");
 
         }
-
-
     }
-
-
-
 }

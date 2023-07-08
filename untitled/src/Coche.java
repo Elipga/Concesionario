@@ -11,6 +11,7 @@ abstract class Coche {
 
 
 
+
     //Constructor y validaciones
     public Coche(String marca, String modelo, String matricula, EstadoCoche estado, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
         this.marca = marca;
@@ -56,7 +57,6 @@ abstract class Coche {
     //metodo para añadir una reparacion al arraylist
 
     public void anyadirReparacion(Reparacion r){
-
         reparaciones.add(r);
         estado= EstadoCoche.enReparacion;
     }
@@ -82,7 +82,6 @@ abstract class Coche {
     //Método para obtener el historial de reparaciones ordenados por fecha
 
     public void historialReparaciones() {
-
             Comparator<Reparacion> comparador = new Comparator<Reparacion>() {
                 public int compare(Reparacion reparacion1, Reparacion reparacion2) {
                     return reparacion1.getFechaReparacion().compareTo(reparacion2.getFechaReparacion());
@@ -109,10 +108,6 @@ abstract class Coche {
             if (contador == reparaciones.size()){
                 estado= EstadoCoche.reparado;
             }
-
         }
-
     }
-
-
 }

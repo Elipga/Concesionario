@@ -4,11 +4,13 @@ import java.util.Set;
 
 public class Concesionario {
     private HashMap<String,Coche> cochesConcesionario;
+    private HashMap<String,Exposicion> exposiciones;
 
     public Concesionario() {
         this.cochesConcesionario = new HashMap<String,Coche>();
-    }
+        this.exposiciones = new HashMap<String, Exposicion>();
 
+    }
     public HashMap<String, Coche> getCochesConcesionario() {
         return cochesConcesionario;
     }
@@ -22,7 +24,7 @@ public class Concesionario {
     public void anyadirCoche(String coche, Coche c){
         //for (Coche valor:cochesConcesionario.values())
           //  if (valor.getMatricula() == c.getMatricula()) {
-            //    throw new AlreadyExists("El coche ya está introducido");
+            //    throw new AlreadyExistsException("El coche ya está introducido");
               //  break;
             //}
         cochesConcesionario.put(coche,c);
@@ -113,5 +115,17 @@ public class Concesionario {
             }
         }
         return cochesVendidos;
+    }
+
+    public void anyadirExposicion(String exposicion, Exposicion e){
+        exposiciones.put(exposicion, e);
+    }
+
+    public void borrarExposicion(String exposicion, Exposicion e){
+        exposiciones.remove(exposicion, e);
+    }
+
+    public void anyadirCocheAExposicion(){
+        listaCochesEnVenta();
     }
 }
