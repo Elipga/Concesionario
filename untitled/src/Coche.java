@@ -10,8 +10,6 @@ abstract class Coche {
     private LinkedList<Reparacion> reparaciones;
 
 
-
-
     //Constructor y validaciones
     public Coche(String marca, String modelo, String matricula, EstadoCoche estado, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
         this.marca = marca;

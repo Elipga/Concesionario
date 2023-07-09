@@ -15,9 +15,16 @@ public class Main {
 
         Concesionario c = new Concesionario();
 
-        c.anyadirExposicion("Exposicion 1", a);
+        c.anyadirCoche("Coche 1", l);
+        c.anyadirCoche("Coche 2", k);
 
-        l.anyadirAExposicion(a);
+        c.anyadirExposicion("Exposicion 1", a);
+        c.historialCochesEnVenta();
+
+        a.anyadirCocheAExposicion(l);
+
+        a.visualizarCochesExposicion();
+        a.visualizarExposicion();
 
 
     }

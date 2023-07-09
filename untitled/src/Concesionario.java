@@ -11,6 +11,8 @@ public class Concesionario {
         this.exposiciones = new HashMap<String, Exposicion>();
 
     }
+
+
     public HashMap<String, Coche> getCochesConcesionario() {
         return cochesConcesionario;
     }
@@ -125,7 +127,14 @@ public class Concesionario {
         exposiciones.remove(exposicion, e);
     }
 
-    public void anyadirCocheAExposicion(){
-        listaCochesEnVenta();
-    }
+    /*public void anyadirCocheAExposicion(Coche c){
+        HashSet<Coche> cochesEnExposicion= new HashSet<>();
+        for (Coche item:listaCochesEnVenta()){
+            if (c.getMatricula() == item.getMatricula()){
+                cochesEnExposicion.add(c);
+            }
+        }
+        //buscar coche en hashmap lista coches en venta
+        //añadir coche a lista coches de X exposicion
+    }*/
 }
