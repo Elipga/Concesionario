@@ -33,13 +33,13 @@ public class Exposicion {
                 '}';
     }
 
-    public void anyadirCocheAExposicion (Coche c){
+    /*public void anyadirCocheAExposicion (Coche c){
         for (Coche item:conce.listaCochesEnVenta()) { //buscar coche en hashSet lista coches en venta
             if (c.getMatricula() == item.getMatricula()) { //si encuentra el coche (por matricula)
                 cochesEnExposicion.add(c); //añadir coche a lista coches de X exposicion
             }
         }
-    }
+    }*/
 
     public String getNumeroExposcion() {
         return numeroExposcion;

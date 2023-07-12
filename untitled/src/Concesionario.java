@@ -1,20 +1,36 @@
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class Concesionario {
     private HashMap<String,Coche> cochesConcesionario;
+    private HashMap<String,Coche> cochesEnVenta;
+    private HashMap<String,Coche> cochesEnReparacion;
+    private HashMap<String,Coche> cochesReservados;
+    private HashMap<String,Coche> cochesVendidos;
     private HashMap<String,Exposicion> exposiciones;
 
     public Concesionario() {
-        this.cochesConcesionario = new HashMap<String,Coche>();
-        this.exposiciones = new HashMap<String, Exposicion>();
-
+        this.cochesConcesionario = new HashMap<>();
+        this.cochesEnVenta = new HashMap<>();
+        this.cochesEnReparacion = new HashMap<>();
+        this.cochesReservados = new HashMap<>();
+        this.cochesVendidos = new HashMap<>();
+        this.exposiciones = new HashMap<>();
     }
 
+    public HashMap<String, Coche> getCochesEnVenta() {
+        return cochesEnVenta;
+    }
 
-    public HashMap<String, Coche> getCochesConcesionario() {
-        return cochesConcesionario;
+    public HashMap<String, Coche> getCochesEnReparacion() {
+        return cochesEnReparacion;
+    }
+
+    public HashMap<String, Coche> getCochesReservados() {
+        return cochesReservados;
+    }
+
+    public HashMap<String, Coche> getCochesVendidos() {
+        return cochesVendidos;
     }
 
     public String toStringCoches() {
@@ -23,16 +39,83 @@ public class Concesionario {
                 '}';
     }
 
-    public void anyadirCoche(String coche, Coche c){
-        //for (Coche valor:cochesConcesionario.values())
-          //  if (valor.getMatricula() == c.getMatricula()) {
-            //    throw new AlreadyExistsException("El coche ya está introducido");
-              //  break;
-            //}
+    public HashMap<String, Coche> getCochesConcesionario() {
+        return cochesConcesionario;
+    }
+
+    public void anyadirCoche(String coche, Coche c) throws AlreadyExistsException {
+        if (cochesConcesionario.containsKey(coche)) throw new AlreadyExistsException("El coche ya está en el concesionario");
         cochesConcesionario.put(coche,c);
     }
 
-    public void historialCoches(){
+    public void anyadirCocheEnVenta(String coche, Coche c) throws AlreadyExistsException {
+        if (cochesEnVenta.containsKey(coche)) throw new AlreadyExistsException("El coche ya está en venta");
+        cochesEnVenta.put(coche, c);
+    }
+
+    public void anyadirCocheEnReparacion(String coche, Coche c) throws AlreadyExistsException {
+        if (cochesEnVenta.containsKey(coche)) throw new AlreadyExistsException("El coche ya está en reparación");
+        cochesEnReparacion.put(coche, c);
+    }
+
+    public void anyadirCocheReservado(String coche, Coche c) throws AlreadyExistsException {
+        if (cochesEnVenta.containsKey(coche)) throw new AlreadyExistsException("El coche ya está reservado");
+        cochesReservados.put(coche, c);
+    }
+
+    public void anyadirCocheVendido(String coche, Coche c) throws AlreadyExistsException {
+        if (cochesEnVenta.containsKey(coche)) throw new AlreadyExistsException("El coche ya está vendido");
+        cochesVendidos.put(coche, c);
+    }
+
+    public void imprimirCoches() {
+        System.out.println("Listado coches");
+        for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
+            System.out.println(valor.toStringCoche());
+        }
+    }
+
+    public void imprimirEnVenta() {
+        System.out.println("Listado coches en venta");
+        for (Coche valor:cochesEnVenta.values()) { //se obtienen los valores de cada coche
+            System.out.println(valor.toStringCoche());
+        }
+    }
+
+    public void imprimirEnReparacion() {
+        System.out.println("Listado coches en reparación");
+        for (Coche valor:cochesEnReparacion.values()) { //se obtienen los valores de cada coche
+            System.out.println(valor.toStringCoche());
+        }
+    }
+
+    public void imprimirReservados() {
+        System.out.println("Listado coches reservados");
+        for (Coche valor:cochesReservados.values()) { //se obtienen los valores de cada coche
+            System.out.println(valor.toStringCoche());
+        }
+    }
+
+    public void imprimirVendidos() {
+        System.out.println("Listado coches vendidos");
+        for (Coche valor:cochesVendidos.values()) { //se obtienen los valores de cada coche
+            System.out.println(valor.toStringCoche());
+        }
+    }
+
+
+    /*public void anyadirCocheAExposicion(String coche, String numExposicion) {
+        Coche c = buscaCocheEnVenta(coche);
+        Exposicion e = buscaExposicion(numExposicion);
+        e.anyadirCocheAExposicion(c);
+    }
+
+    public Coche buscaCocheEnVenta (Coche c) {
+        if (listaCochesEnVenta());
+        return
+    }*/
+
+    /*public void historialCoches(){
         for (String clave:cochesConcesionario.keySet()) { //se obtienen las claves
             Coche valor = cochesConcesionario.get(clave);
             System.out.println(clave + valor.toStringCoche());
@@ -49,10 +132,10 @@ public class Concesionario {
     }
 
     public HashSet<Coche> listaCochesEnVenta() {
-        HashSet<Coche> cochesEnVenta = new HashSet<>();
+        HashMap<String, Coche> cochesEnVenta = new HashMap<>();
         for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
-            if (valor.getEstado() == EstadoCoche.enVenta){ // si el estado es enVenta se añade al HashSet y se imprime
-                cochesEnVenta.add(valor);
+            if (valor.getEstado() == EstadoCoche.enVenta){ // si el estado es enVenta se añade al HashMap y se imprime
+                cochesEnVenta.put(valor);
                 valor.toStringCoche();
             }
         }

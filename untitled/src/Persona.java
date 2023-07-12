@@ -27,7 +27,7 @@ public class Persona {
         if(dni == null) throw new NotNullException("DNI no puede ser null");
         if(dni.isEmpty()) throw new IsEmptyException("DNI no puede quedar vacío");
         //introducir re.match para comprobar y validar el dni con 8dígitos y una letra
-        boolean dniValido = dni.matches("\"\\\\d{9}\"");
+        boolean dniValido = dni.matches("[0-9]{8}[A-Za-z]");
     }
     private void validateTelefono (int telefono) throws NotNullException {
         //no entiendo muy bien por qué pide usar el Integer.parseInt pero era la forma de usar la validación

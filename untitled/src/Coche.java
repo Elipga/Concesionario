@@ -4,6 +4,8 @@ abstract class Coche {
     private String marca;
     private String modelo;
     private String matricula;
+
+    private TipoCoche tipoCoche;
     private double precioCompra;
     private double precioVenta;
     private EstadoCoche estado;
@@ -12,7 +14,12 @@ abstract class Coche {
 
     //Constructor y validaciones
     public Coche(String marca, String modelo, String matricula, EstadoCoche estado, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
-        this.marca = marca;
+        setMarca(marca);
+        setModelo(modelo);
+        setMatricula(matricula);
+        setPrecioCompra(precioCompra);
+        setPrecioVenta(precioVenta);
+        /*this.marca = marca;
         if(marca == null) throw new NotNullException("La marca no puede ser null");
         if(marca == "") throw new IsEmptyException("La marca no puede estar vacía");
         this.modelo = modelo;
@@ -28,8 +35,71 @@ abstract class Coche {
         this.precioVenta = precioVenta;
         if(precioVenta < 0) throw new InvalidException("El precio de venta debe ser superior a 0");
         this.reparaciones = new LinkedList<>();
-        if (this.reparaciones == null) throw new NotNullException("El array no puede ser null");
+        if (this.reparaciones == null) throw new NotNullException("El array no puede ser null");*/
     }
+
+    public Coche(String marca, String modelo, String matricula, TipoCoche tipocoche, double precioCompra, double precioVenta) throws InvalidException, IsEmptyException, NotNullException {
+        setMarca(marca);
+        setModelo(modelo);
+        setMatricula(matricula);
+        setTipoCoche(tipocoche);
+        setPrecioCompra(precioCompra);
+        setPrecioVenta(precioVenta);
+    }
+
+    public Coche() throws InvalidException, IsEmptyException, NotNullException {
+        this.marca = "Marca";
+        this.modelo = "Modelo";
+        this.matricula = "Matrícula";
+        this.precioVenta = 0;
+        this.precioCompra = 0;
+    }
+
+
+
+
+    public String toStringCochesito() {
+        return "Coche{" +
+                "marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", matricula='" + matricula + '\'' +
+                ", precioCompra=" + precioCompra +
+                ", precioVenta=" + precioVenta +
+                '}';
+    }
+
+    public void setMarca(String marca) throws NotNullException, IsEmptyException {
+        if(marca == null) throw new NotNullException("La marca no puede ser null");
+        if(marca.isEmpty()) throw new IsEmptyException("La marca no puede estar vacía");
+        this.marca = marca;
+    }
+
+    public void setTipoCoche(TipoCoche tipoCoche) {
+        this.tipoCoche = tipoCoche;
+    }
+
+    public void setModelo(String modelo) throws NotNullException, IsEmptyException {
+        if(modelo == null) throw new NotNullException("El modelo no puede ser null");
+        if(modelo == "") throw new IsEmptyException("El modelo no puede estar vacío");
+        this.modelo = modelo;
+    }
+
+    public void setMatricula(String matricula) throws NotNullException, IsEmptyException {
+        if(matricula == null) throw new NotNullException("La matrícula no puede ser null");
+        if(matricula == "") throw new IsEmptyException("La matrícula no puede estar vacía");
+        this.matricula = matricula;
+    }
+
+    public void setPrecioCompra(double precioCompra) throws InvalidException {
+        if(precioCompra < 0) throw new InvalidException("El precio de compra debe ser superior a 0");
+        this.precioCompra = precioCompra;
+    }
+
+    public void setPrecioVenta(double precioVenta) throws InvalidException {
+        if(precioVenta < 0) throw new InvalidException("El precio de venta debe ser superior a 0");
+        this.precioVenta = precioVenta;
+    }
+
 
     //ToString para imprimir los atributos de los coches
 
@@ -52,6 +122,7 @@ abstract class Coche {
     public EstadoCoche getEstado() {
         return estado;
     }
+
     //metodo para añadir una reparacion al arraylist
 
     public void anyadirReparacion(Reparacion r){
