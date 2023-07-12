@@ -7,10 +7,20 @@ public class FormularioAltaCoche {
     public Coche altaCoche() throws IsEmptyException, InvalidException, NotNullException {
         Scanner in = new Scanner((System.in));
         int opcion = in.nextInt();
-        if(opcion == 1) {
-            CocheTodoterreno c = new CocheTodoterreno();
-            datos(c);
-            return c;
+
+        switch (opcion){
+            case 1:
+                CocheTodoterreno c = new CocheTodoterreno();
+                datos(c);
+                return c;
+            case 2:
+                CocheIndustrial a = new CocheIndustrial();
+                datos(a);
+                return a;
+            case 3:
+                CocheTurismo b = new CocheTurismo();
+                datos(b);
+                return b;
         }
         return null;
     }

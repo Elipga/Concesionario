@@ -24,7 +24,8 @@ public class Programa {
                 System.out.println("3- Turismo");
                 Coche c = nuevoCoche();
                 concesionario.anyadirCoche(c.getMatricula(), c);
-                concesionario.anyadirCocheEnVenta(c.getMatricula(),c);
+                concesionario.anyadirCocheEnVenta(c.getMatricula(),c); //el coche se añade por defecto En venta
+                break;
 
             case 2: System.out.println("Elija una lista");
                 System.out.println("1- Coches del Concesionario");
@@ -32,14 +33,10 @@ public class Programa {
                 System.out.println("3- Coches en reparación");
                 System.out.println("4- Coches reservados");
                 System.out.println("5- Coches vendidos");
+                System.out.println("6- Volver al Menú vendedor");
                 int opcion2 = in.nextInt();
-                switch (opcion2){
-                    case 1: concesionario.imprimirCoches();
-                    case 2: concesionario.imprimirEnVenta();
-                    case 3: concesionario.imprimirEnReparacion();
-                    case 4: concesionario.imprimirReservados();
-                    case 5: concesionario.imprimirVendidos();
-                }
+                elegirLista(opcion2);
+                break;
 
 
         }
@@ -51,7 +48,26 @@ public class Programa {
         return c;
     }
 
-    public void elegirLista(){
+    public void elegirLista(int opcion2) throws AlreadyExistsException, IsEmptyException, InvalidException, NotNullException {
+        switch (opcion2){
+            case 1:
+                concesionario.imprimirCoches();
+                break;
+            case 2:
+                concesionario.imprimirEnVenta();
+                break;
+            case 3:
+                concesionario.imprimirEnReparacion();
+                break;
+            case 4:
+                concesionario.imprimirReservados();
+                break;
+            case 5:
+                concesionario.imprimirVendidos();
+                break;
+            case 6:
+                start();
+        }
 
     }
 

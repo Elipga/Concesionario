@@ -13,7 +13,7 @@ abstract class Coche {
 
 
     //Constructor y validaciones
-    public Coche(String marca, String modelo, String matricula, EstadoCoche estado, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
+    public Coche(String marca, String modelo, String matricula, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
         setMarca(marca);
         setModelo(modelo);
         setMatricula(matricula);
@@ -54,9 +54,6 @@ abstract class Coche {
         this.precioVenta = 0;
         this.precioCompra = 0;
     }
-
-
-
 
     public String toStringCochesito() {
         return "Coche{" +
