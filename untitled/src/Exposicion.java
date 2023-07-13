@@ -33,21 +33,17 @@ public class Exposicion {
                 '}';
     }
 
-    /*public void anyadirCocheAExposicion (Coche c){
-        for (Coche item:conce.listaCochesEnVenta()) { //buscar coche en hashSet lista coches en venta
-            if (c.getMatricula() == item.getMatricula()) { //si encuentra el coche (por matricula)
-                cochesEnExposicion.add(c); //añadir coche a lista coches de X exposicion
-            }
-        }
-    }*/
-
     public String getNumeroExposcion() {
         return numeroExposcion;
     }
 
+    public void anyadirCocheAExposicion (Coche c) throws AlreadyExistsException {
+        if(bucarCocheExposicion(c) == c) throw new AlreadyExistsException("El coche ya está en la exposicion");
+        cochesEnExposicion.add(c);
+    }
 
-
-    public void borrarCocheExposicion(Coche c){
+    public void borrarCocheExposicion(Coche c) throws AlreadyExistsException {
+        if (bucarCocheExposicion(c) == null) throw new AlreadyExistsException("El coche no se encuentra en la exposición");
         cochesEnExposicion.remove(c);
     }
 
@@ -61,13 +57,23 @@ public class Exposicion {
         }
     }
 
-    public void ubicacionExposicion(Coche e){
+    public void ubicacionCocheExposicion(Coche c){
         for(Coche item: cochesEnExposicion){
-            if (e.getMatricula() == item.getMatricula()){
+            if (c.getMatricula() == item.getMatricula()){
                 System.out.println("El coche se encuentra en la exposicion: " + numeroExposcion);
                 break;
             }
             else System.out.println("El coche no está en la exposición");
         }
     }
+
+    public Coche bucarCocheExposicion(Coche c){
+        for(Coche item: cochesEnExposicion){
+            if (c.getMatricula() == item.getMatricula())
+                return c;
+        }
+        return null;
+    }
+
+
 }

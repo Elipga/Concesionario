@@ -37,8 +37,6 @@ public class Programa {
                 int opcion2 = in.nextInt();
                 elegirLista(opcion2);
                 break;
-
-
         }
     }
 
@@ -70,8 +68,4 @@ public class Programa {
         }
 
     }
-
-
-
-
 }

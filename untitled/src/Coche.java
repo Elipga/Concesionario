@@ -84,6 +84,7 @@ abstract class Coche {
     public void setMatricula(String matricula) throws NotNullException, IsEmptyException {
         if(matricula == null) throw new NotNullException("La matrícula no puede ser null");
         if(matricula == "") throw new IsEmptyException("La matrícula no puede estar vacía");
+        //[0-9]{0-4}[A-Za-z]{5-7}
         this.matricula = matricula;
     }
 

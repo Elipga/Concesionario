@@ -68,6 +68,12 @@ public class Concesionario {
         cochesVendidos.put(coche, c);
     }
 
+    public void cocheVendido(String coche, Coche c) {
+        //comprobar que el coche esté en venta
+        cochesEnVenta.remove(coche, c);
+        cochesVendidos.put(coche, c);
+    }
+
     public void imprimirCoches() {
         System.out.println("Listado coches");
         for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
@@ -103,17 +109,52 @@ public class Concesionario {
         }
     }
 
+    public Coche buscarCoche(String matricula){
+        if (cochesConcesionario.containsKey(matricula))
+            return cochesConcesionario.get(matricula);
+        else return null;
+    }
 
-    /*public void anyadirCocheAExposicion(String coche, String numExposicion) {
-        Coche c = buscaCocheEnVenta(coche);
-        Exposicion e = buscaExposicion(numExposicion);
+    public Coche buscarCocheVenta(String matricula){
+        if (cochesEnVenta.containsKey(matricula))
+            return cochesEnVenta.get(matricula); //devuelve el valor asociado a la clave de la matricula
+        else return null;
+    }
+
+    public Exposicion buscarExposicion(String numExposicion){
+        if(exposiciones.containsKey(numExposicion))
+            return exposiciones.get(numExposicion);
+        else return null;
+    }
+
+    public void anyadirCocheAExposicion(String matricula, String numExposicion) {
+        Coche c = buscarCocheVenta(matricula);
+        Exposicion e = buscarExposicion(numExposicion);
         e.anyadirCocheAExposicion(c);
     }
 
-    public Coche buscaCocheEnVenta (Coche c) {
-        if (listaCochesEnVenta());
-        return
+    public void borrarCocheExposicion(Coche c, String numExposicion) {
+        Exposicion e = buscarExposicion(numExposicion);
+        c = e.bucarCocheExposicion(c);
+        e.borrarCocheExposicion(c);
+    }
+
+    /*public void cambiarCocheExposicion(Coche c, String numExposicion) {
+        Exposicion e = buscarExposicion(numExposicion);
+        c = e.bucarCocheExposicion(c);
+
+
     }*/
+
+    public void anyadirExposicion(String exposicion, Exposicion e){
+        exposiciones.put(exposicion, e);
+    }
+
+    public void borrarExposicion(String exposicion, Exposicion e){
+        exposiciones.remove(exposicion, e);
+    }
+
+
 
     /*public void historialCoches(){
         for (String clave:cochesConcesionario.keySet()) { //se obtienen las claves
@@ -202,13 +243,7 @@ public class Concesionario {
         return cochesVendidos;
     }
 
-    public void anyadirExposicion(String exposicion, Exposicion e){
-        exposiciones.put(exposicion, e);
-    }
 
-    public void borrarExposicion(String exposicion, Exposicion e){
-        exposiciones.remove(exposicion, e);
-    }
 
     /*public void anyadirCocheAExposicion(Coche c){
         HashSet<Coche> cochesEnExposicion= new HashSet<>();
