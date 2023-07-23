@@ -17,7 +17,7 @@ public class OpcionesCoche {
         this.concesionario = concesionario;
     }
 
-    public void startOpcionesCoche() throws NotExistsException {
+    public void startOpcionesCocheDirector() throws NotExistsException {
         Scanner in = new Scanner((System.in));
         int opcionCoches = 0;
 
@@ -27,15 +27,12 @@ public class OpcionesCoche {
 
             switch (opcionCoches){
                 case 1:
-                    //System.out.println("Nuevo formulario de coche");
                     altaCoche();
                     break;
                 case 2:
-                    //System.out.println("Vender coche");
-                    venderCoche();
+                    venderCocheDirector();
                     break;
                 case 3:
-                    //System.out.println("Reservar coche");
                     reservarCoche();
                     break;
                 case 4:
@@ -45,6 +42,38 @@ public class OpcionesCoche {
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 5");
+                    System.out.println("--------------");
+                    break;
+            }
+        }
+    }
+
+    public void startOpcionesCocheVendedor(String dniVendedor) throws NotExistsException {
+        Scanner in = new Scanner((System.in));
+        int opcionCoches = 0;
+
+        while (opcionCoches != 5){
+            menu();
+            opcionCoches = in.nextInt();
+
+            switch (opcionCoches){
+                case 1:
+                    altaCoche();
+                    break;
+                case 2:
+                    venderCocheVendedor(dniVendedor);
+                    break;
+                case 3:
+                    reservarCoche();
+                    break;
+                case 4:
+                    elegirListaCoche();
+                    break;
+                case 5:
+                    break;
+                default:
+                    System.out.println("Debe introducir una de las opciones: del 1 al 5");
+                    System.out.println("--------------");
                     break;
             }
         }
@@ -56,6 +85,7 @@ public class OpcionesCoche {
         System.out.println("3- Reservar Coche");
         System.out.println("4- Consultar listas de coches");
         System.out.println("5- Salir");
+        System.out.println("--------------");
     }
 
     public void menuAltaCoche(){
@@ -64,6 +94,7 @@ public class OpcionesCoche {
         System.out.println("2- Industrial");
         System.out.println("3- Turismo");
         System.out.println("4- Salir");
+        System.out.println("--------------");
     }
 
     public void altaCoche()  {
@@ -85,6 +116,7 @@ public class OpcionesCoche {
                             concesionario.anyadirCoche(a.getMatricula(), a);
                             concesionario.anyadirCocheEnVenta(a.getMatricula(), a);
                             System.out.println("Coche Todoterreno dado de alta con éxito");
+                            System.out.println("--------------");
                             seguir = false;
                             break;
 
@@ -93,6 +125,7 @@ public class OpcionesCoche {
                             concesionario.anyadirCoche(b.getMatricula(), b);
                             concesionario.anyadirCocheEnVenta(b.getMatricula(), b);
                             System.out.println("Coche Industrial dado de alta con éxito");
+                            System.out.println("--------------");
                             seguir = false;
                             break;
 
@@ -101,18 +134,20 @@ public class OpcionesCoche {
                             concesionario.anyadirCoche(c.getMatricula(), c);
                             concesionario.anyadirCocheEnVenta(c.getMatricula(), c);
                             System.out.println("Coche Turismo dado de alta con éxito");
+                            System.out.println("--------------");
                             seguir = false;
                             break;
                         case 4:
                             break;
                         default:
                             System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                            System.out.println("--------------");
                             seguir=false;
                             break;
                     }
                 } catch (AlreadyExistsException e) {
                     System.out.println(e.getMessage());
-                    System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
                     String tecla = in.next();
                     if (tecla.equals("0")) { seguir = false;
 
@@ -123,79 +158,75 @@ public class OpcionesCoche {
         }
     }
 
-    public void venderCocheDirector()  {
+
+    public void venderCocheVendedor(String dniVendedor)  {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
-
-        do {
-            try {
-                System.out.println("Introduzca la matrícula del coche que va a ser vendido: ");
-                String matriculaVender = in.next();
-                concesionario.buscarCocheVenta(matriculaVender);
-                concesionario.venderCocheDirector(matriculaVender);
-                System.out.println("El coche ha sido vendido con éxito por el director comercial");
-                seguir = false;
-            } catch (NotExistsException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
-                String tecla = in.next();
-                if (tecla.equals("0")) { seguir = false;
-
-                }
-
-            } catch (AlreadyExistsException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
-                String tecla = in.next();
-                if (tecla.equals("0")) { seguir = false;
-
-                }
-            }
-        }while (seguir == true);
-    }
-
-
-    public void venderCoche()  {
-        boolean seguir = true;
-        Scanner in = new Scanner((System.in));
-        System.out.println("Pulse 0 si es el director comercial o cualquier otra tecla si es un vendedor");
-        String director = "1";
-        director = in.next();
-
-        if (director == "0"){
-            venderCocheDirector();
-        }
-
-        else {
 
             do {
                 try {
                     System.out.println("Introduzca la matrícula del coche que va a ser vendido: ");
+                    System.out.println("--------------");
                     String matriculaVender = in.next();
                     concesionario.buscarCocheVenta(matriculaVender);
-                    System.out.println("Introduzca el DNI del vendedor que va a vender el coche");
-                    String dniVender = in.next();
-                    concesionario.buscarVendedor(dniVender);
-                    concesionario.venderCocheVendedor(matriculaVender, dniVender);
+                    concesionario.buscarVendedor(dniVendedor);
+                    concesionario.venderCocheVendedor(matriculaVender, dniVendedor);
                     System.out.println("El coche ha sido vendido con éxito");
+                    System.out.println("--------------");
                     seguir = false;
                 } catch (NotExistsException e) {
                     System.out.println(e.getMessage());
-                    System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("--------------");
                     String tecla = in.next();
                     if (tecla.equals("0")) {
                         seguir = false;
                     }
                 } catch (AlreadyExistsException e) {
                     System.out.println(e.getMessage());
-                    System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("--------------");
                     String tecla = in.next();
                     if (tecla.equals("0")) {
                         seguir = false;
                     }
                 }
             } while (seguir == true);
-        }
+    }
+
+
+    public void venderCocheDirector(){
+        Scanner in = new Scanner((System.in));
+        boolean seguir = true;
+
+        do {
+            try {
+                System.out.println("Introduzca la matrícula del coche que va a ser vendido: ");
+                System.out.println("--------------");
+                String matriculaVender = in.next();
+                concesionario.buscarCocheVenta(matriculaVender);
+                concesionario.venderCocheDirector(matriculaVender);
+                System.out.println("El coche ha sido vendido con éxito");
+                System.out.println("--------------");
+                seguir = false;
+            } catch (NotExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
+                String tecla = in.next();
+                if (tecla.equals("0")) {
+                    seguir = false;
+                }
+            } catch (AlreadyExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
+                String tecla = in.next();
+                if (tecla.equals("0")) {
+                    seguir = false;
+                }
+            }
+        } while (seguir == true);
     }
 
     public void reservarCoche() throws NotExistsException {
@@ -205,14 +236,17 @@ public class OpcionesCoche {
         do {
             try {
                 System.out.println("Introduzca la matrícula del coche que va a ser reservado: ");
+                System.out.println("--------------");
                 String matriculaReservar = in.next();
                 concesionario.buscarCocheVenta(matriculaReservar);
                 concesionario.reservarCocheDirector(matriculaReservar);
                 System.out.println("El coche ha sido reservado con éxito por el director comercial");
+                System.out.println("--------------");
                 seguir = false;
             } catch (NotExistsException e) {
                 e.getMessage();
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) { seguir = false;
 
@@ -228,6 +262,7 @@ public class OpcionesCoche {
         System.out.println("3- Lista coches reservados");
         System.out.println("4- Lista coches vendidos");
         System.out.println("5- Salir");
+        System.out.println("--------------");
     }
 
 
@@ -257,6 +292,7 @@ public class OpcionesCoche {
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                    System.out.println("--------------");
                     break;
             }
         }

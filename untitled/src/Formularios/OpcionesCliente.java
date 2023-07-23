@@ -39,6 +39,7 @@ public class OpcionesCliente {
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                    System.out.println("--------------");
                     break;
             }
         }
@@ -50,6 +51,7 @@ public class OpcionesCliente {
         System.out.println("3- Modificar un cliente");
         System.out.println("4- Consultar lista clientes");
         System.out.println("5- Salir");
+        System.out.println("--------------");
     }
 
     public void nuevoCliente() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NotNullException {
@@ -63,6 +65,7 @@ public class OpcionesCliente {
         Scanner in = new Scanner((System.in));
         //System.out.println("Eliminar cliente");
         System.out.println("Introduzca el DNI del cliente que desea eliminar:");
+        System.out.println("--------------");
         String dni = in.next(); // pedir dni
 
         do {
@@ -70,10 +73,12 @@ public class OpcionesCliente {
                 concesionario.buscarCliente(dni);
                 concesionario.borrarCliente(dni);
                 System.out.println("Cliente borrado con éxito");
+                System.out.println("--------------");
                 seguir = false;
             } catch (NotExistsException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
+                System.out.println("--------------");
                 dni = in.next();
                 if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
             }
@@ -86,6 +91,7 @@ public class OpcionesCliente {
         System.out.println("1- Modificar dirección");
         System.out.println("2- Modificar teléfono");
         System.out.println("3- Salir");
+        System.out.println("--------------");
     }
 
     public void modificarCliente() throws IsEmptyException, NotNullException, NotExistsException {
@@ -101,20 +107,30 @@ public class OpcionesCliente {
             switch (modificar) {
                 case "1":
                     System.out.println("Introduzca el DNI del cliente que desea modificar");
+                    System.out.println("--------------");
                     String dni = in.next(); //pedir dni
 
                     do {
                         try {
                             concesionario.buscarCliente(dni);
                             System.out.println("Introduzca la nueva dirección");
+                            System.out.println("--------------");
                             in.nextLine();
                             String direccion =in.nextLine();
                             concesionario.modificarDireccionCliente(dni, direccion);
                             System.out.println("Cliente modificado con éxito");
+                            System.out.println("--------------");
                             seguir = false;
                         } catch (NotExistsException e) {
                             System.out.println(e.getMessage());
                             System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
+                            System.out.println("--------------");
+                            dni = in.next();
+                            if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
+                        } catch (AlreadyExistsException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
+                            System.out.println("--------------");
                             dni = in.next();
                             if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
                         }
@@ -130,22 +146,22 @@ public class OpcionesCliente {
                 case "2":
 
                     System.out.println("Introduzca el DNI del cliente que desea modificar");
+                    System.out.println("--------------");
                     String dni2 = in.next(); //pedir dni
-
-
-                    System.out.println("Introduzca el nuevo teléfono");
-                    String telefono = in.next();
                     do {
                         try {
                             concesionario.buscarCliente(dni2);
                             System.out.println("Introduzca el nuevo teléfono");
-                            telefono = in.next();
+                            System.out.println("--------------");
+                            String telefono = in.next();
                             concesionario.modificarTelefonoVendedor(dni2, telefono);
                             System.out.println("Cliente modificado con éxito");
+                            System.out.println("--------------");
                             seguir = false;
-                        } catch (NotExistsException e) {
+                        } catch (NotExistsException | AlreadyExistsException e) {
                             System.out.println(e.getMessage());
                             System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
+                            System.out.println("--------------");
                             dni2 = in.next();
                             if (dni2.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
 
@@ -161,6 +177,7 @@ public class OpcionesCliente {
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                    System.out.println("--------------");
                     seguir=false;
                     break;
             }

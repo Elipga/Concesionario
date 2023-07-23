@@ -11,27 +11,25 @@ public class Persona {
     private String telefono;
 
     public Persona(String nombre, String direccion, String dni, String  telefono) throws IsEmptyException, NotNullException, InvalidException {
-        if(direccion == null) throw new NotNullException("Dirección no puede ser null");
-        if(direccion.isEmpty()) throw new IsEmptyException("Dirección no puede quedar vacío");
+        validateNombre(nombre);
         this.nombre = nombre;
         if(direccion == null) throw new NotNullException("Dirección no puede ser null");
         if(direccion.isEmpty()) throw new IsEmptyException("Dirección no puede quedar vacío");
         this.direccion = direccion;
-
         this.dni = dni;
         if(telefono == null) throw new NotNullException("Teléfono no puede ser null");
         if(telefono == "") throw new IsEmptyException("Teléfono no puede estar vacío");
         if((telefono.length() != 9)) throw new InvalidException("Teléfono debe tener 9 dígitos");
+        if(telefono.charAt(0) != '6' ) throw new InvalidException("El primer número debe ser un 6");
         if (!telefono.matches("^[0-9]+$")) throw new InvalidException("Debe introducir numeros"); //valida que sean numeros del 0 al 9
         this.telefono = telefono;
     }
 
-    public Persona() {
-        super();
-        this.nombre = "Nombre";
-        this.dni = "dni";
-        this.telefono = ("000000000");
+    private static void validateNombre(String nombre) throws NotNullException, IsEmptyException {
+        if(nombre == null) throw new NotNullException("Nombre no puede ser null");
+        if(nombre.isEmpty()) throw new IsEmptyException("Nombre no puede quedar vacío");
     }
+
 
     public String toStringPersona() {
         return  "nombre='" + nombre + '\'' +
@@ -42,18 +40,22 @@ public class Persona {
     }
 
     public String getNombre() {
+
         return nombre;
     }
 
     public String getDireccion() {
+
         return direccion;
     }
 
     public String getDni() {
+
         return dni;
     }
 
     public String getTelefono() {
+
         return telefono;
     }
 
@@ -68,6 +70,7 @@ public class Persona {
         if(telefono == "") throw new IsEmptyException("Teléfono no puede estar vacío");
         if((telefono.length() != 9)) throw new InvalidException("Teléfono debe tener 9 dígitos");
         if (!telefono.matches("^[0-9]+$")) throw new InvalidException("Debe introducir numeros");
+        if(telefono.charAt(0) != '6' ) throw new InvalidException("El primer número debe ser un 6");
         this.telefono = telefono;
     }
 

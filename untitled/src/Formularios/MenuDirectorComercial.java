@@ -27,18 +27,17 @@ public class MenuDirectorComercial {
                     break;
                 case "2":
                     OpcionesCoche b = new OpcionesCoche(concesionario);
-                    b.startOpcionesCoche();
+                    b.startOpcionesCocheDirector();
                     break;
                 case "3":
                     OpcionesCliente c = new OpcionesCliente(concesionario);
                     c.startOpcionesCliente();
                     break;
                 case "4":
-                    OpcionesCliente d = new OpcionesCliente(concesionario);
-                    d.startOpcionesCliente();
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                    System.out.println("--------------");
                     break;
 
             }
@@ -51,6 +50,7 @@ public class MenuDirectorComercial {
         System.out.println("2- Gestión de coches");
         System.out.println("3- Gestión de clientes");
         System.out.println("4- Salir");
+        System.out.println("--------------");
 
     }
 

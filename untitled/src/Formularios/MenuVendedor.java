@@ -16,6 +16,7 @@ public class MenuVendedor {
     public void startMenuVendedor() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NotNullException {
         Scanner in = new Scanner((System.in));
         String opcionVendedor = "0";
+        String dni = identificarseVendedor();
 
         while (!opcionVendedor.equals("4")){
             menu();
@@ -23,8 +24,8 @@ public class MenuVendedor {
 
             switch (opcionVendedor) {
                 case "1":
-                    OpcionesVendedor a = new OpcionesVendedor(concesionario);
-                    a.startOpcionesVendedores();
+                    OpcionesCoche a = new OpcionesCoche(concesionario);
+                    a.startOpcionesCocheVendedor(dni);
                     break;
                 case "2":
                     OpcionesCliente b = new OpcionesCliente(concesionario);
@@ -34,9 +35,35 @@ public class MenuVendedor {
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 3");
+                    System.out.println("--------------");
                     break;
             }
         }
+    }
+
+    private String identificarseVendedor() {
+        Scanner in = new Scanner((System.in));
+        boolean seguir = true;
+
+        do {
+            try {
+                System.out.println("Introduzca su DNI:");
+                System.out.println("--------------");
+                String dni = in.next();
+                concesionario.buscarVendedor(dni);
+                System.out.println("Vendedor identificado con éxito");
+                return dni;
+            } catch (NotExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.println("Pulse una tecla para volver a intentarlo o pulse 0 para salir");
+                System.out.println("--------------");
+                String tecla = in.next();
+                if (tecla.equals("0")) {
+                    return identificarseVendedor();
+                }
+            }
+        }while (seguir == true);
+        return null;
     }
 
     public void menu(){
@@ -44,6 +71,8 @@ public class MenuVendedor {
         System.out.println("1- Gestión de coches");
         System.out.println("2- Gestión de clientes");
         System.out.println("3- Salir");
+        System.out.println("--------------");
     }
+
 
 }

@@ -28,6 +28,7 @@ public class MenuCliente {
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 2");
+                    System.out.println("--------------");
                     break;
             }
         }
@@ -37,5 +38,6 @@ public class MenuCliente {
         System.out.println("Qué desea hacer?");
         System.out.println("1- Consultar lista de coches en venta");
         System.out.println("2- Salir");
+        System.out.println("--------------");
     }
 }

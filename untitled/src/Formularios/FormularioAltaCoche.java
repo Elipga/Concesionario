@@ -21,19 +21,25 @@ public class FormularioAltaCoche {
             try {
                 System.out.println("Nuevo formulario de coche");
                 System.out.println("Marca: Dacia, Toyota, Mercedes, Fiat o Renault");
+                System.out.println("--------------");
                 String marca = in.next();
                 System.out.println("Modelo");
+                System.out.println("--------------");
                 String modelo = in.next();
                 System.out.println("Matricula: la matrícula debe tener 7 dígitos (4 números y 3 letras)");
+                System.out.println("--------------");
                 String matricula = in.next();
                 System.out.println("Precio de Compra");
+                System.out.println("--------------");
                 double precioCompra = in.nextDouble();
                 System.out.println("Precio de venta");
+                System.out.println("--------------");
                 double precioVenta = in.nextDouble();
                 return new CocheTodoterreno(marca, modelo, matricula, precioCompra, precioVenta);
             } catch (NotNullException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -41,7 +47,8 @@ public class FormularioAltaCoche {
                 ;
             } catch (IsEmptyException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -49,7 +56,8 @@ public class FormularioAltaCoche {
                 ;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -71,19 +79,25 @@ public class FormularioAltaCoche {
             try {
                 System.out.println("Nuevo formulario de coche");
                 System.out.println("Marca: Dacia, Toyota, Mercedes, Fiat o Renault");
+                System.out.println("--------------");
                 String marca = in.next();
                 System.out.println("Modelo");
+                System.out.println("--------------");
                 String modelo = in.next();
                 System.out.println("Matricula: la matrícula debe tener 7 dígitos (4 números y 3 letras)");
+                System.out.println("--------------");
                 String matricula = in.next();
                 System.out.println("Precio de Compra");
+                System.out.println("--------------");
                 double precioCompra = in.nextDouble();
                 System.out.println("Precio de venta");
+                System.out.println("--------------");
                 double precioVenta = in.nextDouble();
                 return new CocheIndustrial(marca, modelo, matricula, precioCompra, precioVenta);
             } catch (NotNullException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -92,7 +106,8 @@ public class FormularioAltaCoche {
                 ;
             } catch (IsEmptyException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -100,7 +115,8 @@ public class FormularioAltaCoche {
                 ;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -122,19 +138,25 @@ public class FormularioAltaCoche {
             try {
                 System.out.println("Nuevo formulario de coche");
                 System.out.println("Marca: Dacia, Toyota, Mercedes, Fiat o Renault");
+                System.out.println("--------------");
                 String marca = in.next();
                 System.out.println("Modelo");
+                System.out.println("--------------");
                 String modelo = in.next();
                 System.out.println("Matricula: la matrícula se compone de 4 números y 3 letras");
+                System.out.println("--------------");
                 String matricula = in.next();
                 System.out.println("Precio de Compra");
+                System.out.println("--------------");
                 double precioCompra = in.nextDouble();
                 System.out.println("Precio de venta");
+                System.out.println("--------------");
                 double precioVenta = in.nextDouble();
                 return new CocheTurismo(marca, modelo, matricula, precioCompra, precioVenta);
             } catch (NotNullException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -142,7 +164,8 @@ public class FormularioAltaCoche {
                 ;
             } catch (IsEmptyException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();
@@ -150,7 +173,8 @@ public class FormularioAltaCoche {
                 ;
             } catch (InvalidException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla + enter si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
                     o.altaCoche();

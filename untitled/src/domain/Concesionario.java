@@ -44,6 +44,14 @@ public class Concesionario {
         return cochesVendidos;
     }
 
+    public HashMap<String, Cliente> getClientes() {
+        return clientes;
+    }
+
+    public HashMap<String, Vendedor> getVendedores() {
+        return vendedores;
+    }
+
     public String toStringCoches() {
         return "domain.Concesionario{" +
                 "cochesConcesionario=" + cochesConcesionario +
@@ -165,13 +173,15 @@ public class Concesionario {
         v.sueldoVendedor();
     }
 
-    public void modificarDireccionVendedor(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NotNullException {
+    public void modificarDireccionVendedor(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
         Vendedor v = buscarVendedor(dni);
+        if(v.getDireccion().equals(nuevaDireccion)) throw new AlreadyExistsException("La dirección es la misma que la anterior");
         v.setDireccion(nuevaDireccion);
     }
 
-    public void modificarTelefonoVendedor(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NotNullException {
+    public void modificarTelefonoVendedor(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
         Vendedor v = buscarVendedor(dni);
+        if(v.getTelefono().equals(nuevoTelefono)) throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
         v.setDireccion(nuevoTelefono);
     }
 
@@ -192,16 +202,13 @@ public class Concesionario {
 
     public void venderCocheDirector(String matricula) throws NotExistsException, AlreadyExistsException {
         Coche c = buscarCocheVenta(matricula);
-        if(buscarCocheVenta(matricula).equals(null)) throw new NotExistsException("El coche no está en venta");
         cochesEnVenta.remove(matricula,c);
         cochesVendidos.put(matricula, c);
     }
 
     public void reservarCoche(String matricula, String dni) throws NotExistsException, AlreadyExistsException {
         Coche c = buscarCocheVenta(matricula);
-        if(buscarCocheVenta(matricula).equals(null)) throw new NotExistsException("El coche no está en venta");
         Vendedor v = buscarVendedor(dni);
-        if(buscarVendedor(dni).equals(null)) throw new NotExistsException("El vendedor no existe");
         v.venderCoche(c);
         cochesEnVenta.remove(matricula,c);
         cochesReservados.put(matricula, c);
@@ -209,7 +216,6 @@ public class Concesionario {
 
     public void reservarCocheDirector(String matricula) throws NotExistsException {
         Coche c = buscarCocheVenta(matricula);
-        if(buscarCocheVenta(matricula).equals(null)) throw new NotExistsException("El coche no está en venta");
         cochesEnVenta.remove(matricula,c);
         cochesReservados.put(matricula, c);
     }
@@ -230,13 +236,15 @@ public class Concesionario {
         else {throw new NotExistsException("El cliente no existe");}
     }
 
-    public void modificarDireccionCliente(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NotNullException {
+    public void modificarDireccionCliente(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
         Cliente c = buscarCliente(dni);
+        if(c.getDireccion().equals(nuevaDireccion)) throw new AlreadyExistsException("La dirección es la misma que la anterior");
         c.setDireccion(nuevaDireccion);
     }
 
-    public void modificarTelefonoCliente(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NotNullException {
+    public void modificarTelefonoCliente(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
         Cliente c = buscarCliente(dni);
+        if(c.getTelefono().equals(nuevoTelefono)) throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
         c.setDireccion(nuevoTelefono);
     }
 

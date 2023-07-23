@@ -14,10 +14,9 @@ public class Vendedor extends Persona{
 
     public Vendedor(String nombre, String direccion, String dni, String telefono) throws IsEmptyException, NotNullException, InvalidException {
         super(nombre, direccion, dni, telefono);
+        this.cochesVendidos = new ArrayList<Coche>();
     }
 
-    public Vendedor() {
-    }
 
 
     public double sueldoVendedor(){
@@ -33,9 +32,7 @@ public class Vendedor extends Persona{
 
     public void venderCoche(Coche c) throws AlreadyExistsException {
         for (Coche item:cochesVendidos){
-            if (c.getMatricula() == item.getMatricula()){
-                throw new AlreadyExistsException("El coche ya ha sido vendido");
-            }
+            if (c.getMatricula() == item.getMatricula()) throw new AlreadyExistsException("El coche ya ha sido vendido");
         }
         cochesVendidos.add(c);
     }
