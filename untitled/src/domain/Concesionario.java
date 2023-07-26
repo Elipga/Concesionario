@@ -165,6 +165,11 @@ public class Concesionario {
         else {throw new NotExistsException("El vendedor no existe");}
     }
 
+    public void comprobarVendedor(String dni) throws AlreadyExistsException {
+        if (vendedores.containsKey(dni))
+            throw new AlreadyExistsException("El vendedor ya está dado de alta");
+    }
+
     public void consultarSueldoVendedor(String dni) throws NotExistsException {
         Vendedor v = buscarVendedor(dni);
         v.sueldoVendedor();
@@ -233,6 +238,13 @@ public class Concesionario {
             return clientes.get(dni); //devuelve el valor asociado a la clave del dni
         else {throw new NotExistsException("El cliente no existe");}
     }
+
+    public void comprobarCliente(String dni) throws AlreadyExistsException {
+        if (clientes.containsKey(dni))
+            throw new AlreadyExistsException("El cliente ya está dado de alta");
+    }
+
+
 
     public void modificarDireccionCliente(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Cliente c = buscarCliente(dni);

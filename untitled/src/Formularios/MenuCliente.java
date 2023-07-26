@@ -67,6 +67,6 @@ public class MenuCliente {
         System.out.println("Qué desea hacer?");
         System.out.println("1- Consultar lista de coches en venta");
         System.out.println("2- Salir");
-        System.out.print("Introduzca una tecla: ");
+        System.out.print("Introduzca un número: ");
     }
 }

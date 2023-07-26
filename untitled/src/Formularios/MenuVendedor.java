@@ -73,8 +73,6 @@ public class MenuVendedor {
         System.out.println("1- Gestión de coches");
         System.out.println("2- Gestión de clientes");
         System.out.println("3- Salir");
-        System.out.print("Introduzca una tecla");
+        System.out.print("Introduzca un número: ");
     }
-
-
 }

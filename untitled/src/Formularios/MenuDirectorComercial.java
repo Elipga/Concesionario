@@ -50,10 +50,8 @@ public class MenuDirectorComercial {
         System.out.println("2- Gestión de coches");
         System.out.println("3- Gestión de clientes");
         System.out.println("4- Salir");
-        System.out.print("Introduzca una tecla: ");
+        System.out.print("Introduzca un número: ");
     }
-
-
 }
 
 

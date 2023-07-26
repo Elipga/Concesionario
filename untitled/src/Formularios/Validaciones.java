@@ -62,8 +62,9 @@ public class Validaciones {
         if(direccion.isEmpty()) throw new IsEmptyException("Dirección no puede quedar vacío");
     }
 
-    public static void validateNombre(String nombre) throws NullException, IsEmptyException {
+    public static void validateNombre(String nombre) throws NullException, IsEmptyException, InvalidException {
         if(nombre == null) throw new NullException("Nombre no puede ser null");
         if(nombre.isEmpty()) throw new IsEmptyException("Nombre no puede quedar vacío");
+        if(!nombre.matches("[a-zA-Z]+")) throw new InvalidException("El nombre se compone de letras");
     }
 }

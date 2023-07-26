@@ -27,12 +27,18 @@ public class ProgramaFinal {
                     a.startMenuDirector();
                     break;
                 case "2":
-                    empezarVendedor();
+                    if (concesionario.getVendedores().isEmpty()) { //Si no hay vendedores dados de alta
+                        empezarVendedor();
+                        break;
+                    }
                     MenuVendedor b = new MenuVendedor(concesionario);
                     b.startMenuVendedor();
                     break;
                 case "3":
-                    empezarCliente();
+                    if(concesionario.getClientes().isEmpty()){ //Si no hay clientes dados de alta
+                        empezarCliente();
+                        break;
+                    }
                     MenuCliente c = new MenuCliente(concesionario);
                     c.startMenuCliente();
                     break;
@@ -53,7 +59,6 @@ public class ProgramaFinal {
             System.out.println("Todavía no hay vendedores dados de alta");
             System.out.println("Para ello, identifíquese como Director comercial");
             System.out.println("--------------");
-            startPrograma();
         }
     }
 
@@ -65,7 +70,6 @@ public class ProgramaFinal {
             System.out.println("Todavía no hay clientes dados de alta");
             System.out.println("Para ello, identifíquese como Director comercial o como vendedor");
             System.out.println("--------------");
-            startPrograma();
         }
     }
 
@@ -75,6 +79,6 @@ public class ProgramaFinal {
         System.out.println("2- Vendedor");
         System.out.println("3- Cliente");
         System.out.println("4- Cerrar programa");
-        System.out.print("Introduzca una tecla: ");
+        System.out.print("Introduzca un número: ");
     }
 }

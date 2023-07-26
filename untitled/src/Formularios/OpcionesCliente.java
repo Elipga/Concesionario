@@ -53,7 +53,7 @@ public class OpcionesCliente {
         System.out.println("3- Modificar un cliente");
         System.out.println("4- Consultar lista clientes");
         System.out.println("5- Salir");
-        System.out.println("Introduzca una tecla: ");
+        System.out.println("Introduzca un número: ");
     }
 
     public void nuevoCliente() throws IsEmptyException, InvalidException, NullException {
@@ -62,7 +62,7 @@ public class OpcionesCliente {
 
         do {
             try {
-                FormularioAltaCliente alta = new FormularioAltaCliente();
+                FormularioAltaCliente alta = new FormularioAltaCliente(concesionario);
                 Cliente v = alta.nuevoCliente();
                 concesionario.anyadirCliente(v.getDni(), v);
                 System.out.println("Cliente dado de alta con éxito");
@@ -85,9 +85,10 @@ public class OpcionesCliente {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
         //System.out.println("Eliminar cliente");
-        System.out.println("Introduzca el DNI del cliente que desea eliminar:");
-        System.out.println("--------------");
+        System.out.print("Introduzca el DNI del cliente que desea eliminar:");
         String dni = in.next(); // pedir dni
+        System.out.println("--------------");
+
 
         do {
             try {
@@ -98,9 +99,9 @@ public class OpcionesCliente {
                 seguir = false;
             } catch (NotExistsException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
-                System.out.println("--------------");
+                System.out.print("Pulse una tecla para volverlo a intentar o pulse 0 para salir: ");
                 String tecla = in.next();
+                System.out.println("--------------");
                 if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
             }
         } while (seguir==true);
@@ -111,7 +112,7 @@ public class OpcionesCliente {
         System.out.println("1- Modificar dirección");
         System.out.println("2- Modificar teléfono");
         System.out.println("3- Salir");
-        System.out.println("--------------");
+        System.out.print("Introduzca un número: ");
     }
 
     public void modificarCliente() throws IsEmptyException, NullException, NotExistsException {
@@ -123,16 +124,18 @@ public class OpcionesCliente {
         while (!modificar.equals("3")) {
             menuModificarCliente();
             modificar = in.next();
+            System.out.println("--------------");
+
             switch (modificar) {
                 case "1":
-                    System.out.println("Introduzca el DNI del cliente que desea modificar: ");
+                    System.out.print("Introduzca el DNI del cliente que desea modificar: ");
                     dni = in.next(); //pedir dni
                     System.out.println("--------------");
 
                     do {
                         try {
                             concesionario.buscarCliente(dni);
-                            System.out.println("Introduzca la nueva dirección: ");
+                            System.out.print("Introduzca la nueva dirección: ");
                             in.nextLine();
                             String direccion =in.nextLine();
                             System.out.println("--------------");
@@ -191,6 +194,7 @@ public class OpcionesCliente {
                         }
 
                     }while (seguir==true);
+                    break;
                 case "3":
                     break;
                 default:
