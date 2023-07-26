@@ -26,7 +26,8 @@ public class OpcionesVendedor {
 
             switch (opcionVendedores){
                 case "1":
-                    nuevoVendedor();
+                    FormularioAltaVendedor alta = new FormularioAltaVendedor(concesionario);
+                    alta.nuevoVendedor();
                     break;
                 case "2":
                     borrarVendedor();
@@ -58,7 +59,7 @@ public class OpcionesVendedor {
     }
 
 
-    public void nuevoVendedor() throws IsEmptyException, InvalidException, NullException {
+    /*public void nuevoVendedor() throws IsEmptyException, InvalidException, NullException {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
 
@@ -87,7 +88,7 @@ public class OpcionesVendedor {
                 if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
             }
         }while (seguir == true);
-    }
+    }*/
 
     public void borrarVendedor() {
         boolean seguir = true;
@@ -221,7 +222,8 @@ public class OpcionesVendedor {
         System.out.println("1- Lista de vendedores");
         System.out.println("2- Lista de coches vendidos por un vendedor");
         System.out.println("3- Sueldo de un vendedor");
-        System.out.println("4- Salir");
+        System.out.println("4- Lista de vendedores según ventas");
+        System.out.println("5- Salir");
         System.out.print("Introduzca un número: ");
     }
 
@@ -283,6 +285,9 @@ public class OpcionesVendedor {
                     seguir = true;
                     break;
                 case "4":
+                    concesionario.imprimirVendedoresVentas();
+                    break;
+                case "5":
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");

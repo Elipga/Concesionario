@@ -96,6 +96,10 @@ public class OpcionesCoche {
         System.out.println("--------------");
     }
 
+    public void altaCoche2(){
+
+    }
+
     public void altaCoche() throws IsEmptyException, InvalidException, NullException {
         boolean seguir = true;
         FormularioAltaCoche alta = new FormularioAltaCoche(concesionario);
@@ -107,53 +111,26 @@ public class OpcionesCoche {
             menuAltaCoche();
             tipoCoche = in.next();
 
-            do {
-                try {
-                    switch (tipoCoche) {
-                        case "1":
-                            CocheTodoterreno a = alta.nuevoTodoterreno2();
-                            concesionario.anyadirCoche(a.getMatricula(), a);
-                            concesionario.anyadirCocheEnVenta(a.getMatricula(), a);
-                            System.out.println("Coche Todoterreno dado de alta con éxito");
-                            System.out.println("--------------");
-                            seguir = false;
-                            break;
+            switch (tipoCoche) {
+                case "1":
+                    alta.nuevoTodoterreno();
+                    break;
+                case "2":
+                    alta.nuevoIndustrial();
+                    break;
+                case "3":
+                    alta.nuevoTurismo();
+                    break;
+                case "4":
+                    break;
+                default:
+                    System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                    System.out.println("--------------");
+                    seguir = false;
+                    break;
 
-                        case "2":
-                            CocheIndustrial b = alta.nuevoIndustrial2();
-                            concesionario.anyadirCoche(b.getMatricula(), b);
-                            concesionario.anyadirCocheEnVenta(b.getMatricula(), b);
-                            System.out.println("Coche Industrial dado de alta con éxito");
-                            System.out.println("--------------");
-                            seguir = false;
-                            break;
+            }
 
-                        case "3":
-                            CocheTurismo c = alta.nuevoTurismo2();
-                            concesionario.anyadirCoche(c.getMatricula(), c);
-                            concesionario.anyadirCocheEnVenta(c.getMatricula(), c);
-                            System.out.println("Coche Turismo dado de alta con éxito");
-                            System.out.println("--------------");
-                            seguir = false;
-                            break;
-                        case "4":
-                            seguir = false;
-                            break;
-                        default:
-                            System.out.println("Debe introducir una de las opciones: del 1 al 4");
-                            System.out.println("--------------");
-                            seguir = false;
-                            break;
-                    }
-                } catch (AlreadyExistsException e) {
-                    System.out.println(e.getMessage());
-                    System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
-                    String tecla = in.next();
-                    if (tecla.equals("0")) { seguir = false;
-
-                    }
-                }
-            }while (seguir==true);
         }
     }
 

@@ -47,7 +47,7 @@ public class Reparacion {
 
     @Override
     public String toString() {
-        return "domain.Reparacion{" +
+        return "Reparacion{" +
                 "tipo=" + tipoReparacion +
                 ", resuelta=" + resuelta +
                 ", fechaReparacion=" + fechaReparacion +

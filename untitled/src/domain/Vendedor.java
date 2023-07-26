@@ -24,8 +24,12 @@ public class Vendedor extends Persona{
         return sueldo;
     }
 
+    public void imprimirSueldoVendedor(){
+        System.out.println(sueldoVendedor());
+    }
+
     public void cuantosCochesVendidos(){
-        System.out.println("El vendedor ha vendido " + cochesVendidos.size() + "coches");
+        System.out.println("El vendedor ha vendido " + cochesVendidos.size() + " coche(s)");
     }
 
     public void venderCoche(Coche c) throws AlreadyExistsException {
@@ -41,4 +45,14 @@ public class Vendedor extends Persona{
         }
         if (cochesVendidos.isEmpty()) System.out.println("El vendedor todavía no ha vendido ningún coche");
     }
+
+    public double sumatorioVentas(){
+        double sumatorio = 0;
+        for (Coche item:cochesVendidos){
+            sumatorio = sumatorio + item.getPrecioVenta();
+        }
+        return sumatorio;
+    }
+
+
 }

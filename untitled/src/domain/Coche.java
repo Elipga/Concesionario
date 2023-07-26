@@ -86,11 +86,12 @@ public abstract class Coche {
         this.precioVenta = precioVenta;
     }
 
-
-    //ToString para imprimir los atributos de los coches
+    public Double getPrecioVenta() {
+        return precioVenta;
+    }
 
     public String toStringCoche() {
-        return "domain.Coche{" +
+        return "Coche{" +
                 "marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
                 ", matricula='" + matricula + '\'' +

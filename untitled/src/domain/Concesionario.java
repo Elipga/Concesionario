@@ -2,7 +2,10 @@ package domain;
 
 import Excepciones.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class Concesionario {
     private HashMap<String,Coche> cochesConcesionario;
@@ -14,6 +17,9 @@ public class Concesionario {
     private HashMap<String,Cliente> clientes;
     private HashMap<String,Vendedor> vendedores;
 
+    private TreeMap <Double, Vendedor> vendedoresPorVentas;
+
+
     public Concesionario() {
         this.cochesConcesionario = new HashMap<>();
         this.cochesEnVenta = new HashMap<>();
@@ -23,6 +29,7 @@ public class Concesionario {
         this.clientes = new HashMap<>();
         this.vendedores = new HashMap<>();
         this.exposiciones = new HashMap<>();
+        this.vendedoresPorVentas = new TreeMap<>();
     }
 
     public HashMap<String, Coche> getCochesEnVenta() {
@@ -50,7 +57,7 @@ public class Concesionario {
     }
 
     public String toStringCoches() {
-        return "domain.Concesionario{" +
+        return "Concesionario{" +
                 "cochesConcesionario=" + cochesConcesionario +
                 '}';
     }
@@ -172,7 +179,7 @@ public class Concesionario {
 
     public void consultarSueldoVendedor(String dni) throws NotExistsException {
         Vendedor v = buscarVendedor(dni);
-        v.sueldoVendedor();
+        v.imprimirSueldoVendedor();
     }
 
     public void modificarDireccionVendedor(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
@@ -201,6 +208,16 @@ public class Concesionario {
         v.venderCoche(c);
         cochesEnVenta.remove(matricula,c);
         cochesVendidos.put(matricula, c);
+        vendedoresPorVentas.put(v.sumatorioVentas(),v);
+    }
+
+
+    public void imprimirVendedoresVentas(){
+        System.out.println("Listado de vendedores ordenados por ventas");
+        if(vendedores.isEmpty()) System.out.println("No hay vendedores en la lista");
+        for (Vendedor valor:vendedoresPorVentas.values()) { //se obtienen los valores de cada persona
+            System.out.println(valor.toStringPersona());
+        }
     }
 
     public void venderCocheDirector(String matricula) throws NotExistsException, AlreadyExistsException {

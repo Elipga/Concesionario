@@ -18,6 +18,7 @@ public class MenuVendedor {
         String opcionVendedor = "0";
         String dni = identificarseVendedor();
 
+
         while (!opcionVendedor.equals("3")){
             menu();
             opcionVendedor = in.next();
@@ -43,8 +44,9 @@ public class MenuVendedor {
         }
     }
 
-    private String identificarseVendedor() {
+    private String identificarseVendedor() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NullException {
         Scanner in = new Scanner((System.in));
+        ProgramaFinal p = new ProgramaFinal(concesionario);
         boolean seguir = true;
 
         do {
@@ -61,11 +63,12 @@ public class MenuVendedor {
                 String tecla = in.next();
                 System.out.println("--------------");
                 if (tecla.equals("0")) {
-                    return identificarseVendedor();
+                    p.startPrograma();
+                    seguir = false;
                 }
             }
         }while (seguir == true);
-        return null;
+        return "-1";
     }
 
     public void menu(){

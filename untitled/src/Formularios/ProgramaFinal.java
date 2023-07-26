@@ -1,3 +1,5 @@
+package Formularios;
+
 import Excepciones.*;
 import Formularios.*;
 import domain.Concesionario;
@@ -43,6 +45,7 @@ public class ProgramaFinal {
                     c.startMenuCliente();
                     break;
                 case "4":
+                    System.exit(0);
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");

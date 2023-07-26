@@ -26,7 +26,8 @@ public class OpcionesCliente {
 
             switch (opcionClientes){
                 case "1":
-                    nuevoCliente();
+                    FormularioAltaCliente alta = new FormularioAltaCliente(concesionario);
+                    alta.nuevoCliente();
                     break;
                 case "2":
                     borrarCliente();
@@ -56,7 +57,7 @@ public class OpcionesCliente {
         System.out.println("Introduzca un número: ");
     }
 
-    public void nuevoCliente() throws IsEmptyException, InvalidException, NullException {
+    /*public void nuevoCliente() throws IsEmptyException, InvalidException, NullException {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
 
@@ -79,7 +80,7 @@ public class OpcionesCliente {
                 if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
             }
         }while (seguir == true);
-    }
+    }*/
 
     public void borrarCliente() throws NotExistsException {
         boolean seguir = true;

@@ -32,7 +32,7 @@ public class Exposicion {
 
 
     public String toStringExposicion() {
-        return "domain.Exposicion{" +
+        return "Exposicion{" +
                 "numeroExposcion=" + numeroExposcion +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +

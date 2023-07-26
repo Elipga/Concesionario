@@ -15,7 +15,7 @@ public class FormularioAltaVendedor {
         this.concesionario = concesionario;
     }
 
-    public Vendedor nuevoVendedor() throws IsEmptyException, NotExistsException, InvalidException, NullException {
+    public void nuevoVendedor() throws IsEmptyException, NotExistsException, InvalidException, NullException, AlreadyExistsException {
         Validaciones a = new Validaciones();
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
@@ -41,7 +41,10 @@ public class FormularioAltaVendedor {
                 String telefono = in.next();
                 a.validateTelefono(telefono);
                 System.out.println("--------------");
-                return new Vendedor(nombre, direccion, dni, telefono);
+                Vendedor v =  new Vendedor(nombre, direccion, dni, telefono);
+                concesionario.anyadirVendedor(dni, v);
+                System.out.println("Vendedor dado de alta con éxito");
+                seguir = false;
             }    catch (InvalidException e) {
                     System.out.println(e.getMessage());
                     System.out.print("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir: ");
@@ -49,7 +52,7 @@ public class FormularioAltaVendedor {
                     in.nextLine();
                     System.out.println("--------------");
                     if (tecla.equals("0")) {
-                        o.nuevoVendedor();
+                        seguir = false;
                     }
             } catch (PreconditionException e) {
                 System.out.println(e.getMessage());
@@ -58,7 +61,7 @@ public class FormularioAltaVendedor {
                 in.nextLine();
                 System.out.println("--------------");
                 if (tecla.equals("0")) {
-                    o.nuevoVendedor();
+                    seguir = false;
                 }
                 ;
             } catch (AlreadyExistsException e) {
@@ -68,11 +71,9 @@ public class FormularioAltaVendedor {
                 in.nextLine();
                 System.out.println("--------------");
                 if (tecla.equals("0")) {
-                    o.nuevoVendedor();
+                    seguir = false;
                 }
             }
         }while (seguir==true);
-
-        return null;
     }
 }
