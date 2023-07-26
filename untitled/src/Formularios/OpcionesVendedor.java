@@ -14,7 +14,7 @@ public class OpcionesVendedor {
         this.concesionario = concesionario;
     }
 
-    public void startOpcionesVendedores() throws NotExistsException, AlreadyExistsException, IsEmptyException, InvalidException, NotNullException {
+    public void startOpcionesVendedores() throws NotExistsException, AlreadyExistsException, IsEmptyException, InvalidException, NullException {
 
         Scanner in = new Scanner((System.in));
         String opcionVendedores = "0";
@@ -65,7 +65,7 @@ public class OpcionesVendedor {
         return v;
     }*/
 
-    public void nuevoVendedor()  {
+    public void nuevoVendedor() throws IsEmptyException, InvalidException, NullException {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
 
@@ -81,25 +81,11 @@ public class OpcionesVendedor {
                 System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
                 String tecla = in.next();
                 if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
-            } catch (IsEmptyException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
-                String tecla = in.next();
-                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
             } catch (NotExistsException e) {
                 System.out.println(e.getMessage());
                 System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
                 String tecla = in.next();
                 if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
-            } catch (InvalidException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
-                String tecla = in.next();
-                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
-            } catch (NotNullException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
-                String tecla = in.next();
             }
         }while (seguir == true);
     }
@@ -134,7 +120,7 @@ public class OpcionesVendedor {
         System.out.println("3- Salir");
     }
 
-    public void modificarVendedor() throws IsEmptyException, NotNullException, NotExistsException, AlreadyExistsException {
+    public void modificarVendedor() throws IsEmptyException, NullException, NotExistsException, AlreadyExistsException {
 
         Scanner in = new Scanner((System.in));
         boolean seguir = true;
@@ -262,6 +248,7 @@ public class OpcionesVendedor {
                         }
                     }while (seguir== true);
                     seguir = false;
+                    break;
                 case "3":
                     do {
                         String dni;

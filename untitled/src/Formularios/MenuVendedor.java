@@ -13,14 +13,16 @@ public class MenuVendedor {
         this.concesionario = concesionario;
     }
 
-    public void startMenuVendedor() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NotNullException {
+    public void startMenuVendedor() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NullException {
         Scanner in = new Scanner((System.in));
         String opcionVendedor = "0";
         String dni = identificarseVendedor();
 
-        while (!opcionVendedor.equals("4")){
+        while (!opcionVendedor.equals("3")){
             menu();
             opcionVendedor = in.next();
+            System.out.println("--------------");
+
 
             switch (opcionVendedor) {
                 case "1":
@@ -47,17 +49,17 @@ public class MenuVendedor {
 
         do {
             try {
-                System.out.println("Introduzca su DNI:");
-                System.out.println("--------------");
+                System.out.print("Introduzca su DNI: ");
                 String dni = in.next();
+                System.out.println("--------------");
                 concesionario.buscarVendedor(dni);
                 System.out.println("Vendedor identificado con éxito");
                 return dni;
             } catch (NotExistsException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla para volver a intentarlo o pulse 0 para salir");
-                System.out.println("--------------");
+                System.out.println("Pulse una tecla para volver a intentarlo o pulse 0 para salir: ");
                 String tecla = in.next();
+                System.out.println("--------------");
                 if (tecla.equals("0")) {
                     return identificarseVendedor();
                 }
@@ -71,7 +73,7 @@ public class MenuVendedor {
         System.out.println("1- Gestión de coches");
         System.out.println("2- Gestión de clientes");
         System.out.println("3- Salir");
-        System.out.println("--------------");
+        System.out.print("Introduzca una tecla");
     }
 
 

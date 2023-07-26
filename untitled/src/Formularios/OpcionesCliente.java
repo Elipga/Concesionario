@@ -3,6 +3,7 @@ package Formularios;
 import Excepciones.*;
 import domain.Cliente;
 import domain.Concesionario;
+import domain.Vendedor;
 
 import java.util.Scanner;
 
@@ -14,13 +15,14 @@ public class OpcionesCliente {
         this.concesionario = concesionario;
     }
 
-    public void startOpcionesCliente() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NotNullException {
+    public void startOpcionesCliente() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NullException {
         Scanner in = new Scanner((System.in));
         String opcionClientes = "0";
 
         while (!opcionClientes.equals("5")){
             menu();
             opcionClientes = in.next();
+            System.out.println("--------------");
 
             switch (opcionClientes){
                 case "1":
@@ -51,13 +53,32 @@ public class OpcionesCliente {
         System.out.println("3- Modificar un cliente");
         System.out.println("4- Consultar lista clientes");
         System.out.println("5- Salir");
-        System.out.println("--------------");
+        System.out.println("Introduzca una tecla: ");
     }
 
-    public void nuevoCliente() throws AlreadyExistsException, IsEmptyException, NotExistsException, InvalidException, NotNullException {
-        FormularioAltaCliente alta = new FormularioAltaCliente();
-        Cliente v = alta.nuevoCliente();
-        concesionario.anyadirCliente(v.getDni(), v);
+    public void nuevoCliente() throws IsEmptyException, InvalidException, NullException {
+        boolean seguir = true;
+        Scanner in = new Scanner((System.in));
+
+        do {
+            try {
+                FormularioAltaCliente alta = new FormularioAltaCliente();
+                Cliente v = alta.nuevoCliente();
+                concesionario.anyadirCliente(v.getDni(), v);
+                System.out.println("Cliente dado de alta con éxito");
+                seguir = false;
+            } catch (AlreadyExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.print("Pulse una tecla para volverlo a intentar o pulse 0 para salir: ");
+                String tecla = in.next();
+                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
+            } catch (NotExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.print("Pulse una tecla para volverlo a intentar o pulse 0 para salir: ");
+                String tecla = in.next();
+                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
+            }
+        }while (seguir == true);
     }
 
     public void borrarCliente() throws NotExistsException {
@@ -77,13 +98,12 @@ public class OpcionesCliente {
                 seguir = false;
             } catch (NotExistsException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
+                System.out.println("Pulse una tecla para volverlo a intentar o pulse 0 para salir");
                 System.out.println("--------------");
-                dni = in.next();
-                if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
+                String tecla = in.next();
+                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
             }
         } while (seguir==true);
-
     }
 
     public void menuModificarCliente(){
@@ -94,84 +114,82 @@ public class OpcionesCliente {
         System.out.println("--------------");
     }
 
-    public void modificarCliente() throws IsEmptyException, NotNullException, NotExistsException {
-
+    public void modificarCliente() throws IsEmptyException, NullException, NotExistsException {
         Scanner in = new Scanner((System.in));
         boolean seguir = true;
         String  modificar = "0";
+        String dni;
 
         while (!modificar.equals("3")) {
             menuModificarCliente();
             modificar = in.next();
-
             switch (modificar) {
                 case "1":
-                    System.out.println("Introduzca el DNI del cliente que desea modificar");
+                    System.out.println("Introduzca el DNI del cliente que desea modificar: ");
+                    dni = in.next(); //pedir dni
                     System.out.println("--------------");
-                    String dni = in.next(); //pedir dni
 
                     do {
                         try {
                             concesionario.buscarCliente(dni);
-                            System.out.println("Introduzca la nueva dirección");
-                            System.out.println("--------------");
+                            System.out.println("Introduzca la nueva dirección: ");
                             in.nextLine();
                             String direccion =in.nextLine();
+                            System.out.println("--------------");
                             concesionario.modificarDireccionCliente(dni, direccion);
                             System.out.println("Cliente modificado con éxito");
                             System.out.println("--------------");
                             seguir = false;
                         } catch (NotExistsException e) {
                             System.out.println(e.getMessage());
-                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
-                            System.out.println("--------------");
+                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir: ");
                             dni = in.next();
+                            System.out.println("--------------");
                             if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
                         } catch (AlreadyExistsException e) {
                             System.out.println(e.getMessage());
-                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
-                            System.out.println("--------------");
+                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir: ");
                             dni = in.next();
+                            System.out.println("--------------");
                             if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
                         }
                     } while (seguir==true);
-
                     seguir = true;
-                    //if (dni.equals("0")) break; //si pulsa 0 te saca del case 1
-                    //System.out.println("Introduzca la nueva dirección");
-                    //String direccion =in.next();
-                    //concesionario.modificarDireccionVendedor(dni, direccion);
-                    //System.out.println("domain.Vendedor modificado con éxito");
                     break;
                 case "2":
 
-                    System.out.println("Introduzca el DNI del cliente que desea modificar");
+                    System.out.println("Introduzca el DNI del cliente que desea modificar: ");
+                    dni = in.next(); //pedir dni
                     System.out.println("--------------");
-                    String dni2 = in.next(); //pedir dni
                     do {
                         try {
-                            concesionario.buscarCliente(dni2);
-                            System.out.println("Introduzca el nuevo teléfono");
-                            System.out.println("--------------");
+                            concesionario.buscarCliente(dni);
+                            System.out.print("Introduzca el nuevo teléfono: ");
                             String telefono = in.next();
-                            concesionario.modificarTelefonoVendedor(dni2, telefono);
+                            System.out.println("--------------");
+                            concesionario.modificarTelefonoCliente(dni, telefono);
                             System.out.println("Cliente modificado con éxito");
                             System.out.println("--------------");
                             seguir = false;
-                        } catch (NotExistsException | AlreadyExistsException e) {
+                        } catch (NotExistsException e) {
                             System.out.println(e.getMessage());
-                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir");
+                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir: ");
+                            dni = in.next();
                             System.out.println("--------------");
-                            dni2 = in.next();
-                            if (dni2.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
-
+                            if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
+                        } catch (AlreadyExistsException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir: ");
+                            dni = in.next();
+                            System.out.println("--------------");
+                            if (dni.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
+                        } catch (InvalidException e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("Ingrese de nuevo el dni o pulse 0 para salir: ");
+                            dni = in.next();
+                            System.out.println("--------------");
                         }
-                        while (seguir == true) ;
 
-                        //seguir = true;
-                        //concesionario.modificarTelefonoVendedor(dni2, telefono);
-                        //System.out.println("Vendedor modificado con éxito");
-                        //break;
                     }while (seguir==true);
                 case "3":
                     break;

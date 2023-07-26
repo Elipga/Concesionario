@@ -3,7 +3,7 @@ package domain;
 import Excepciones.AlreadyExistsException;
 import Excepciones.InvalidException;
 import Excepciones.IsEmptyException;
-import Excepciones.NotNullException;
+import Excepciones.NullException;
 
 import java.util.ArrayList;
 
@@ -12,16 +12,14 @@ public class Vendedor extends Persona{
 
     private double sueldo;
 
-    public Vendedor(String nombre, String direccion, String dni, String telefono) throws IsEmptyException, NotNullException, InvalidException {
+    public Vendedor(String nombre, String direccion, String dni, String telefono) throws IsEmptyException, NullException, InvalidException {
         super(nombre, direccion, dni, telefono);
         this.cochesVendidos = new ArrayList<Coche>();
     }
 
-
-
     public double sueldoVendedor(){
-        double sueldo = 1000;
-        sueldo = sueldo + cochesVendidos.size() * 200;
+        double sueldo = 0;
+        sueldo = cochesVendidos.size() * 200;
         cuantosCochesVendidos();
         return sueldo;
     }
@@ -38,6 +36,9 @@ public class Vendedor extends Persona{
     }
 
     public void imprimirCochesVendidos() {
-
+        for(Coche item: cochesVendidos){
+            System.out.println(item.toStringCoche());
+        }
+        if (cochesVendidos.isEmpty()) System.out.println("El vendedor todavía no ha vendido ningún coche");
     }
 }

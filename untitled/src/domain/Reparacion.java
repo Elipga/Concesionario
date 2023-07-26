@@ -2,7 +2,7 @@ package domain;
 
 import Excepciones.InvalidException;
 import Excepciones.IsEmptyException;
-import Excepciones.NotNullException;
+import Excepciones.NullException;
 
 import java.util.Date;
 
@@ -13,9 +13,9 @@ public class Reparacion {
     private Date fechaReparacion;
 
 
-    public Reparacion(TipoReparacion tipoReparacion, boolean resuelta) throws NotNullException, IsEmptyException, InvalidException {
+    public Reparacion(TipoReparacion tipoReparacion, boolean resuelta) throws NullException, IsEmptyException, InvalidException {
         this.tipoReparacion = tipoReparacion;
-        if(tipoReparacion == null) throw new NotNullException("Tipo de reparación no puede ser null");
+        if(tipoReparacion == null) throw new NullException("Tipo de reparación no puede ser null");
         if(tipoReparacion.equals("")) throw new IsEmptyException("Tipo de reparación no puede estar vacío");
         this.resuelta = resuelta;
         if((resuelta != true) && (resuelta != false)) throw new InvalidException("Resuelta debe ser true o false");

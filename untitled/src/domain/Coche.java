@@ -2,7 +2,7 @@ package domain;
 
 import Excepciones.InvalidException;
 import Excepciones.IsEmptyException;
-import Excepciones.NotNullException;
+import Excepciones.NullException;
 
 import java.util.*;
 
@@ -10,13 +10,13 @@ public abstract class Coche {
     private String marca;
     private String modelo;
     private String matricula;
-    private double precioCompra;
-    private double precioVenta;
+    private Double precioCompra;
+    private Double precioVenta;
     private LinkedList<Reparacion> reparaciones;
 
 
     //Constructor y validaciones
-    public Coche(String marca, String modelo, String matricula, double precioCompra, double precioVenta) throws NotNullException, IsEmptyException, InvalidException {
+    public Coche(String marca, String modelo, String matricula, Double precioCompra, Double precioVenta) throws NullException, IsEmptyException, InvalidException {
         validateMarca(marca);
         this.marca = marca;
         validateModelo(modelo);
@@ -29,16 +29,16 @@ public abstract class Coche {
         this.precioVenta = precioVenta;
     }
 
-    private static void validatePrecioVenta(double precioVenta) throws InvalidException {
+    private static void validatePrecioVenta(Double precioVenta) throws InvalidException {
         if(precioVenta < 0) throw new InvalidException("El precio de venta debe ser superior a 0");
     }
 
-    private static void validatePrecioCompra(double precioCompra) throws InvalidException {
+    private static void validatePrecioCompra(Double precioCompra) throws InvalidException {
         if(precioCompra < 0) throw new InvalidException("El precio de compra debe ser superior a 0");
     }
 
-    private static void validateMatricula(String matricula) throws NotNullException, IsEmptyException, InvalidException {
-        if(matricula == null) throw new NotNullException("La matrícula no puede ser null");
+    private static void validateMatricula(String matricula) throws NullException, IsEmptyException, InvalidException {
+        if(matricula == null) throw new NullException("La matrícula no puede ser null");
         if(matricula == "") throw new IsEmptyException("La matrícula no puede estar vacía");
         if(matricula.length() != 7) throw new InvalidException("La matrícula debe tener 7 dígitos");
         if(!matricula.matches("^[0-9]{4}[A-Za-z]{3}$"))throw new InvalidException("La matrícula debe contener " +
@@ -47,13 +47,13 @@ public abstract class Coche {
         //[0-9]{4}: 4 caracteres numéricos. [A-Za-z]{3}:3 caracteres alfabéticos. $:el final de la cadena.
     }
 
-    private static void validateModelo(String modelo) throws NotNullException, IsEmptyException {
-        if(modelo == null) throw new NotNullException("El modelo no puede ser null");
+    private static void validateModelo(String modelo) throws NullException, IsEmptyException {
+        if(modelo == null) throw new NullException("El modelo no puede ser null");
         if(modelo == "") throw new IsEmptyException("El modelo no puede estar vacío");
     }
 
-    private void validateMarca(String marca) throws NotNullException, IsEmptyException, InvalidException {
-        if(marca == null) throw new NotNullException("La marca no puede ser null");
+    private void validateMarca(String marca) throws NullException, IsEmptyException, InvalidException {
+        if(marca == null) throw new NullException("La marca no puede ser null");
         if(marca.isEmpty()) throw new IsEmptyException("La marca no puede estar vacía");
         if(!marca.equalsIgnoreCase("Dacia") && !marca.equalsIgnoreCase("Toyota") &&
                 !marca.equalsIgnoreCase("Mercedes") && !marca.equalsIgnoreCase("Fiat")
@@ -61,17 +61,17 @@ public abstract class Coche {
                 "una de las marcas propuestas");
     }
 
-    public void setMarca(String marca) throws NotNullException, IsEmptyException, InvalidException {
+    public void setMarca(String marca) throws NullException, IsEmptyException, InvalidException {
         validateMarca(marca);
         this.marca = marca;
     }
 
-    public void setModelo(String modelo) throws NotNullException, IsEmptyException {
+    public void setModelo(String modelo) throws NullException, IsEmptyException {
         validateModelo(modelo);
         this.modelo = modelo;
     }
 
-    public void setMatricula(String matricula) throws NotNullException, IsEmptyException, InvalidException {
+    public void setMatricula(String matricula) throws NullException, IsEmptyException, InvalidException {
         validateMatricula(matricula);
         this.matricula = matricula;
     }

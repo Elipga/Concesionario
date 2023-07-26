@@ -1,7 +1,6 @@
 package Formularios;
 
-import Excepciones.AlreadyExistsException;
-import Excepciones.NotExistsException;
+import Excepciones.*;
 import domain.CocheIndustrial;
 import domain.CocheTodoterreno;
 import domain.CocheTurismo;
@@ -17,28 +16,28 @@ public class OpcionesCoche {
         this.concesionario = concesionario;
     }
 
-    public void startOpcionesCocheDirector() throws NotExistsException {
+    public void startOpcionesCocheDirector() throws NotExistsException, IsEmptyException, InvalidException, NullException {
         Scanner in = new Scanner((System.in));
-        int opcionCoches = 0;
+        String opcionCoches = "0";
 
-        while (opcionCoches != 5){
+        while (!opcionCoches.equals("5")){
             menu();
-            opcionCoches = in.nextInt();
+            opcionCoches = in.next();
 
             switch (opcionCoches){
-                case 1:
+                case "1":
                     altaCoche();
                     break;
-                case 2:
+                case "2":
                     venderCocheDirector();
                     break;
-                case 3:
+                case "3":
                     reservarCoche();
                     break;
-                case 4:
+                case "4":
                     elegirListaCoche();
                     break;
-                case 5:
+                case "5":
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 5");
@@ -48,28 +47,28 @@ public class OpcionesCoche {
         }
     }
 
-    public void startOpcionesCocheVendedor(String dniVendedor) throws NotExistsException {
+    public void startOpcionesCocheVendedor(String dniVendedor) throws NotExistsException, IsEmptyException, InvalidException, NullException {
         Scanner in = new Scanner((System.in));
-        int opcionCoches = 0;
+        String opcionCoches = "0";
 
-        while (opcionCoches != 5){
+        while (!opcionCoches.equals("5")){
             menu();
-            opcionCoches = in.nextInt();
+            opcionCoches = in.next();
 
             switch (opcionCoches){
-                case 1:
+                case "1":
                     altaCoche();
                     break;
-                case 2:
+                case "2":
                     venderCocheVendedor(dniVendedor);
                     break;
-                case 3:
+                case "3":
                     reservarCoche();
                     break;
-                case 4:
+                case "4":
                     elegirListaCoche();
                     break;
-                case 5:
+                case "5":
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 5");
@@ -97,22 +96,22 @@ public class OpcionesCoche {
         System.out.println("--------------");
     }
 
-    public void altaCoche()  {
+    public void altaCoche() throws IsEmptyException, InvalidException, NullException {
         boolean seguir = true;
-        FormularioAltaCoche alta = new FormularioAltaCoche();
+        FormularioAltaCoche alta = new FormularioAltaCoche(concesionario);
         Scanner in = new Scanner((System.in));
-        int tipoCoche = 0;
+        String tipoCoche = "0";
 
 
-        while (tipoCoche != 4) {
+        while (!tipoCoche.equals("4")) {
             menuAltaCoche();
-            tipoCoche = in.nextInt();
+            tipoCoche = in.next();
 
             do {
                 try {
                     switch (tipoCoche) {
-                        case 1:
-                            CocheTodoterreno a = alta.nuevoTodoterreno();
+                        case "1":
+                            CocheTodoterreno a = alta.nuevoTodoterreno2();
                             concesionario.anyadirCoche(a.getMatricula(), a);
                             concesionario.anyadirCocheEnVenta(a.getMatricula(), a);
                             System.out.println("Coche Todoterreno dado de alta con éxito");
@@ -120,8 +119,8 @@ public class OpcionesCoche {
                             seguir = false;
                             break;
 
-                        case 2:
-                            CocheIndustrial b = alta.nuevoIndustrial();
+                        case "2":
+                            CocheIndustrial b = alta.nuevoIndustrial2();
                             concesionario.anyadirCoche(b.getMatricula(), b);
                             concesionario.anyadirCocheEnVenta(b.getMatricula(), b);
                             System.out.println("Coche Industrial dado de alta con éxito");
@@ -129,20 +128,21 @@ public class OpcionesCoche {
                             seguir = false;
                             break;
 
-                        case 3:
-                            CocheTurismo c = alta.nuevoTurismo();
+                        case "3":
+                            CocheTurismo c = alta.nuevoTurismo2();
                             concesionario.anyadirCoche(c.getMatricula(), c);
                             concesionario.anyadirCocheEnVenta(c.getMatricula(), c);
                             System.out.println("Coche Turismo dado de alta con éxito");
                             System.out.println("--------------");
                             seguir = false;
                             break;
-                        case 4:
+                        case "4":
+                            seguir = false;
                             break;
                         default:
                             System.out.println("Debe introducir una de las opciones: del 1 al 4");
                             System.out.println("--------------");
-                            seguir=false;
+                            seguir = false;
                             break;
                     }
                 } catch (AlreadyExistsException e) {
@@ -152,7 +152,6 @@ public class OpcionesCoche {
                     if (tecla.equals("0")) { seguir = false;
 
                     }
-
                 }
             }while (seguir==true);
         }
@@ -268,27 +267,27 @@ public class OpcionesCoche {
 
     public void elegirListaCoche()  {
         Scanner in = new Scanner((System.in));
-        int listaCoches = 0;
+        String listaCoches = "0";
 
-        while (listaCoches != 5) {
+        while (!listaCoches.equals("5")) {
             menuListaCoche();
-            listaCoches = in.nextInt();
+            listaCoches = in.next();
 
             switch (listaCoches) {
 
-                case 1:
+                case "1":
                     concesionario.imprimirCoches();
                     break;
-                case 2:
+                case "2":
                     concesionario.imprimirEnVenta();
                     break;
-                case 3:
+                case "3":
                     concesionario.imprimirReservados();
                     break;
-                case 4:
+                case "4":
                     concesionario.imprimirVendidos();
                     break;
-                case 5:
+                case "5":
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");

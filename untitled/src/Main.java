@@ -2,7 +2,7 @@ import Excepciones.*;
 import domain.Concesionario;
 
 public class Main {
-    public static void main(String[] args) throws IsEmptyException, NotNullException, InvalidException, AlreadyExistsException, NotExistsException {
+    public static void main(String[] args) throws IsEmptyException, NullException, InvalidException, AlreadyExistsException, NotExistsException {
         System.out.println("**************");
         System.out.println("Bienvenido/a:");
         System.out.println("**************");

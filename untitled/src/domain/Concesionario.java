@@ -1,9 +1,6 @@
 package domain;
 
-import Excepciones.AlreadyExistsException;
-import Excepciones.IsEmptyException;
-import Excepciones.NotExistsException;
-import Excepciones.NotNullException;
+import Excepciones.*;
 
 import java.util.HashMap;
 
@@ -173,13 +170,13 @@ public class Concesionario {
         v.sueldoVendedor();
     }
 
-    public void modificarDireccionVendedor(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
+    public void modificarDireccionVendedor(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Vendedor v = buscarVendedor(dni);
         if(v.getDireccion().equals(nuevaDireccion)) throw new AlreadyExistsException("La dirección es la misma que la anterior");
         v.setDireccion(nuevaDireccion);
     }
 
-    public void modificarTelefonoVendedor(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
+    public void modificarTelefonoVendedor(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Vendedor v = buscarVendedor(dni);
         if(v.getTelefono().equals(nuevoTelefono)) throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
         v.setDireccion(nuevoTelefono);
@@ -187,6 +184,7 @@ public class Concesionario {
 
     public void imprimirVendedores() {
         System.out.println("Listado de vendedores");
+        if(vendedores.isEmpty()) System.out.println("No hay vendedores en la lista");
         for (Vendedor valor:vendedores.values()) { //se obtienen los valores de cada persona
             System.out.println(valor.toStringPersona());
         }
@@ -236,20 +234,21 @@ public class Concesionario {
         else {throw new NotExistsException("El cliente no existe");}
     }
 
-    public void modificarDireccionCliente(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
+    public void modificarDireccionCliente(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Cliente c = buscarCliente(dni);
         if(c.getDireccion().equals(nuevaDireccion)) throw new AlreadyExistsException("La dirección es la misma que la anterior");
         c.setDireccion(nuevaDireccion);
     }
 
-    public void modificarTelefonoCliente(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NotNullException, AlreadyExistsException {
+    public void modificarTelefonoCliente(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException, InvalidException {
         Cliente c = buscarCliente(dni);
         if(c.getTelefono().equals(nuevoTelefono)) throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
-        c.setDireccion(nuevoTelefono);
+        c.setTelefono(nuevoTelefono);
     }
 
     public void imprimirClientes() {
         System.out.println("Listado de clientes");
+        if(clientes.isEmpty()) System.out.println("No hay clientes en la lista");
         for (Cliente valor:clientes.values()) { //se obtienen los valores de cada persona
             System.out.println(valor.toStringPersona());
         }
