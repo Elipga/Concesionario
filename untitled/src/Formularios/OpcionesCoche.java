@@ -152,7 +152,7 @@ public class OpcionesCoche {
                     seguir = false;
                 } catch (NotExistsException e) {
                     System.out.println(e.getMessage());
-                    System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
                     System.out.println("--------------");
                     String tecla = in.next();
                     if (tecla.equals("0")) {
@@ -160,7 +160,7 @@ public class OpcionesCoche {
                     }
                 } catch (AlreadyExistsException e) {
                     System.out.println(e.getMessage());
-                    System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                    System.out.println("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
                     System.out.println("--------------");
                     String tecla = in.next();
                     if (tecla.equals("0")) {
@@ -187,7 +187,7 @@ public class OpcionesCoche {
                 seguir = false;
             } catch (NotExistsException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
                 System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
@@ -195,7 +195,7 @@ public class OpcionesCoche {
                 }
             } catch (AlreadyExistsException e) {
                 System.out.println(e.getMessage());
-                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
                 System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) {
@@ -221,7 +221,7 @@ public class OpcionesCoche {
                 seguir = false;
             } catch (NotExistsException e) {
                 e.getMessage();
-                System.out.println("Pulse una tecla si quiere comenzar de nuevo el formulario o pulse 0 para salir");
+                System.out.println("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
                 System.out.println("--------------");
                 String tecla = in.next();
                 if (tecla.equals("0")) { seguir = false;

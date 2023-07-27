@@ -272,6 +272,7 @@ public class OpcionesVendedor {
                             dni = in.next();
                             concesionario.consultarSueldoVendedor(dni);
                             System.out.println("--------------");
+                            seguir = false;
                         } catch (NotExistsException e) {
                             System.out.println(e.getMessage());
                             System.out.print("Ingrese de nuevo el dni o pulse 0 para salir: ");

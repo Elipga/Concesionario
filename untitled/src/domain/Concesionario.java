@@ -29,7 +29,7 @@ public class Concesionario {
         this.clientes = new HashMap<>();
         this.vendedores = new HashMap<>();
         this.exposiciones = new HashMap<>();
-        this.vendedoresPorVentas = new TreeMap<>();
+        this.vendedoresPorVentas = new TreeMap<>(Collections.reverseOrder());
     }
 
     public HashMap<String, Coche> getCochesEnVenta() {
@@ -208,14 +208,18 @@ public class Concesionario {
         v.venderCoche(c);
         cochesEnVenta.remove(matricula,c);
         cochesVendidos.put(matricula, c);
-        vendedoresPorVentas.put(v.sumatorioVentas(),v);
     }
 
 
     public void imprimirVendedoresVentas(){
         System.out.println("Listado de vendedores ordenados por ventas");
-        if(vendedores.isEmpty()) System.out.println("No hay vendedores en la lista");
-        for (Vendedor valor:vendedoresPorVentas.values()) { //se obtienen los valores de cada persona
+        if(vendedoresPorVentas.isEmpty()) System.out.println("No hay vendedores en la lista");
+        vendedoresPorVentas.clear(); //vacíar lista porque si no se queda los valores anteriores
+        for (Vendedor valor:vendedores.values()){
+            vendedoresPorVentas.put(valor.sumatorioVentas(),valor);
+        } //añade a la lista todos los vendedores con su sumatorio de ventas como clave
+        for (Vendedor valor:vendedoresPorVentas.values()) { //imprime los vendedores ordenados en orden descendente
+            System.out.println("Total vendido: " + valor.sumatorioVentas() + "€");
             System.out.println(valor.toStringPersona());
         }
     }

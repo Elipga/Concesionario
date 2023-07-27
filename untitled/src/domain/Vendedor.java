@@ -20,16 +20,13 @@ public class Vendedor extends Persona{
     public double sueldoVendedor(){
         double sueldo = 0;
         sueldo = cochesVendidos.size() * 200;
-        cuantosCochesVendidos();
         return sueldo;
     }
 
-    public void imprimirSueldoVendedor(){
-        System.out.println(sueldoVendedor());
-    }
 
-    public void cuantosCochesVendidos(){
-        System.out.println("El vendedor ha vendido " + cochesVendidos.size() + " coche(s)");
+    public void imprimirSueldoVendedor(){
+        System.out.println("El vendedor ha vendido " + cochesVendidos.size() + " coche(s), consiguiendo un" +
+                "sueldo de" + sueldoVendedor() + "€");
     }
 
     public void venderCoche(Coche c) throws AlreadyExistsException {
