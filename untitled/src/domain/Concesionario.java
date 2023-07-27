@@ -8,36 +8,28 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Concesionario {
-    private HashMap<String,Coche> cochesConcesionario;
-    private HashMap<String,Coche> cochesEnVenta;
-    private HashMap<String,Coche> cochesEnReparacion;
-    private HashMap<String,Coche> cochesReservados;
-    private HashMap<String,Coche> cochesVendidos;
-    private HashMap<String,Exposicion> exposiciones;
-    private HashMap<String,Cliente> clientes;
-    private HashMap<String,Vendedor> vendedores;
+    private HashMap<String, Coche> cochesConcesionario;
+    private HashMap<String, Coche> cochesEnVenta;
+    private HashMap<String, Coche> cochesReservados;
+    private HashMap<String, Coche> cochesVendidos;
+    private HashMap<String, Cliente> clientes;
+    private HashMap<String, Vendedor> vendedores;
 
-    private TreeMap <Double, Vendedor> vendedoresPorVentas;
+    private TreeMap<Double, Vendedor> vendedoresPorVentas;
 
 
     public Concesionario() {
         this.cochesConcesionario = new HashMap<>();
         this.cochesEnVenta = new HashMap<>();
-        this.cochesEnReparacion = new HashMap<>();
         this.cochesReservados = new HashMap<>();
         this.cochesVendidos = new HashMap<>();
         this.clientes = new HashMap<>();
         this.vendedores = new HashMap<>();
-        this.exposiciones = new HashMap<>();
         this.vendedoresPorVentas = new TreeMap<>(Collections.reverseOrder());
     }
 
     public HashMap<String, Coche> getCochesEnVenta() {
         return cochesEnVenta;
-    }
-
-    public HashMap<String, Coche> getCochesEnReparacion() {
-        return cochesEnReparacion;
     }
 
     public HashMap<String, Coche> getCochesReservados() {
@@ -67,8 +59,9 @@ public class Concesionario {
     }
 
     public void anyadirCoche(String coche, Coche c) throws AlreadyExistsException {
-        if (cochesConcesionario.containsKey(coche)) throw new AlreadyExistsException("El coche ya está en el concesionario");
-        cochesConcesionario.put(coche,c);
+        if (cochesConcesionario.containsKey(coche))
+            throw new AlreadyExistsException("El coche ya está en el concesionario");
+        cochesConcesionario.put(coche, c);
     }
 
     public void anyadirCocheEnVenta(String coche, Coche c) throws AlreadyExistsException {
@@ -76,14 +69,10 @@ public class Concesionario {
         cochesEnVenta.put(coche, c);
     }
 
-    public void anyadirCocheEnReparacion(String coche, Coche c) throws AlreadyExistsException {
-        if (cochesEnVenta.containsKey(coche)) throw new AlreadyExistsException("El coche ya está en reparación");
-        cochesEnReparacion.put(coche, c);
-    }
-
-    public void anyadirCocheReservado(String coche, Coche c) throws AlreadyExistsException {
+    public void anyadirCocheReservado(String coche, Coche c, Cliente a) throws AlreadyExistsException {
         if (cochesReservados.containsKey(coche)) throw new AlreadyExistsException("El coche ya está reservado");
         cochesReservados.put(coche, c);
+        a.anyadirCocheReservado(c);
     }
 
     public void anyadirCocheVendido(String coche, Coche c) throws AlreadyExistsException {
@@ -99,40 +88,32 @@ public class Concesionario {
 
     public void imprimirCoches() {
         System.out.println("Listado coches");
-        if(cochesConcesionario.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
-        for (Coche valor:cochesConcesionario.values()) { //se obtienen los valores de cada coche
+        if (cochesConcesionario.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
+        for (Coche valor : cochesConcesionario.values()) { //se obtienen los valores de cada coche
             System.out.println(valor.toStringCoche());
         }
     }
 
     public void imprimirEnVenta() {
         System.out.println("Listado coches en venta");
-        if(cochesEnVenta.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
-        for (Coche valor:cochesEnVenta.values()) { //se obtienen los valores de cada coche
-            System.out.println(valor.toStringCoche());
-        }
-    }
-
-    public void imprimirEnReparacion() {
-        System.out.println("Listado coches en reparación");
-        if(cochesEnReparacion.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
-        for (Coche valor:cochesEnReparacion.values()) { //se obtienen los valores de cada coche
+        if (cochesEnVenta.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
+        for (Coche valor : cochesEnVenta.values()) { //se obtienen los valores de cada coche
             System.out.println(valor.toStringCoche());
         }
     }
 
     public void imprimirReservados() {
         System.out.println("Listado coches reservados");
-        if(cochesReservados.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
-        for (Coche valor:cochesReservados.values()) { //se obtienen los valores de cada coche
+        if (cochesReservados.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
+        for (Coche valor : cochesReservados.values()) { //se obtienen los valores de cada coche
             System.out.println(valor.toStringCoche());
         }
     }
 
     public void imprimirVendidos() {
         System.out.println("Listado coches vendidos");
-        if(cochesVendidos.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
-        for (Coche valor:cochesVendidos.values()) { //se obtienen los valores de cada coche
+        if (cochesVendidos.isEmpty()) System.out.println("Todavía no hay coches en esta lista");
+        for (Coche valor : cochesVendidos.values()) { //se obtienen los valores de cada coche
             System.out.println(valor.toStringCoche());
         }
     }
@@ -140,20 +121,26 @@ public class Concesionario {
     public Coche buscarCoche(String matricula) throws NotExistsException {
         if (cochesConcesionario.containsKey(matricula))
             return cochesConcesionario.get(matricula);
-        else {throw new NotExistsException("El coche no existe");}
+        else {
+            throw new NotExistsException("El coche no existe");
+        }
 
     }
 
     public Coche buscarCocheVenta(String matricula) throws NotExistsException {
         if (cochesEnVenta.containsKey(matricula))
             return cochesEnVenta.get(matricula); //devuelve el valor asociado a la clave de la matricula
-        else {throw new NotExistsException("El coche no existe");}
+        else {
+            throw new NotExistsException("El coche no existe");
+        }
     }
 
     public Coche buscarCocheReservado(String matricula) throws NotExistsException {
         if (cochesReservados.containsKey(matricula))
             return cochesReservados.get(matricula); //devuelve el valor asociado a la clave de la matricula
-        else {throw new NotExistsException("El coche no existe");}
+        else {
+            throw new NotExistsException("El coche no existe");
+        }
     }
 
     public void anyadirVendedor(String dni, Vendedor v) throws AlreadyExistsException {
@@ -169,7 +156,9 @@ public class Concesionario {
     public Vendedor buscarVendedor(String dni) throws NotExistsException {
         if (vendedores.containsKey(dni))
             return vendedores.get(dni); //devuelve el valor asociado a la clave del dni
-        else {throw new NotExistsException("El vendedor no existe");}
+        else {
+            throw new NotExistsException("El vendedor no existe");
+        }
     }
 
     public void comprobarVendedor(String dni) throws AlreadyExistsException {
@@ -184,64 +173,73 @@ public class Concesionario {
 
     public void modificarDireccionVendedor(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Vendedor v = buscarVendedor(dni);
-        if(v.getDireccion().equals(nuevaDireccion)) throw new AlreadyExistsException("La dirección es la misma que la anterior");
+        if (v.getDireccion().equals(nuevaDireccion))
+            throw new AlreadyExistsException("La dirección es la misma que la anterior");
         v.setDireccion(nuevaDireccion);
     }
 
     public void modificarTelefonoVendedor(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Vendedor v = buscarVendedor(dni);
-        if(v.getTelefono().equals(nuevoTelefono)) throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
+        if (v.getTelefono().equals(nuevoTelefono))
+            throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
         v.setDireccion(nuevoTelefono);
     }
 
     public void imprimirVendedores() {
         System.out.println("Listado de vendedores");
-        if(vendedores.isEmpty()) System.out.println("No hay vendedores en la lista");
-        for (Vendedor valor:vendedores.values()) { //se obtienen los valores de cada persona
+        if (vendedores.isEmpty()) System.out.println("No hay vendedores en la lista");
+        for (Vendedor valor : vendedores.values()) { //se obtienen los valores de cada persona
             System.out.println(valor.toStringPersona());
         }
     }
 
-    public void venderCocheVendedor(String matricula, String dni) throws NotExistsException, AlreadyExistsException {
+    public void venderCocheVendedor(String matricula, String dniVendedor, String dniCliente) throws NotExistsException, AlreadyExistsException {
         Coche c = buscarCocheVenta(matricula);
-        Vendedor v = buscarVendedor(dni);
+        Vendedor v = buscarVendedor(dniVendedor);
         v.venderCoche(c);
-        cochesEnVenta.remove(matricula,c);
+        Cliente a = buscarCliente(dniCliente);
+        a.anyadirCocheComprado(c);
+        cochesEnVenta.remove(matricula, c);
         cochesVendidos.put(matricula, c);
     }
 
 
-    public void imprimirVendedoresVentas(){
+    public void imprimirVendedoresVentas() {
         System.out.println("Listado de vendedores ordenados por ventas");
-        if(vendedoresPorVentas.isEmpty()) System.out.println("No hay vendedores en la lista");
+        if (vendedoresPorVentas.isEmpty()) System.out.println("No hay vendedores en la lista");
         vendedoresPorVentas.clear(); //vacíar lista porque si no se queda los valores anteriores
-        for (Vendedor valor:vendedores.values()){
-            vendedoresPorVentas.put(valor.sumatorioVentas(),valor);
+        for (Vendedor valor : vendedores.values()) {
+            vendedoresPorVentas.put(valor.sumatorioVentas(), valor);
         } //añade a la lista todos los vendedores con su sumatorio de ventas como clave
-        for (Vendedor valor:vendedoresPorVentas.values()) { //imprime los vendedores ordenados en orden descendente
+        for (Vendedor valor : vendedoresPorVentas.values()) { //imprime los vendedores ordenados en orden descendente
             System.out.println("Total vendido: " + valor.sumatorioVentas() + "€");
             System.out.println(valor.toStringPersona());
         }
     }
 
-    public void venderCocheDirector(String matricula) throws NotExistsException, AlreadyExistsException {
+    public void venderCocheDirector(String matricula, String dniCliente) throws NotExistsException, AlreadyExistsException {
         Coche c = buscarCocheVenta(matricula);
-        cochesEnVenta.remove(matricula,c);
+        cochesEnVenta.remove(matricula, c);
         cochesVendidos.put(matricula, c);
+        Cliente a = buscarCliente(dniCliente);
+        a.anyadirCocheComprado(c);
     }
 
-    public void reservarCoche(String matricula, String dni) throws NotExistsException, AlreadyExistsException {
+
+    public void reservarCoche(String matricula, String dniCliente) throws NotExistsException {
         Coche c = buscarCocheVenta(matricula);
-        Vendedor v = buscarVendedor(dni);
-        v.venderCoche(c);
-        cochesEnVenta.remove(matricula,c);
+        cochesEnVenta.remove(matricula, c);
         cochesReservados.put(matricula, c);
+        Cliente a = buscarCliente(dniCliente);
+        a.anyadirCocheReservado(c);
     }
 
-    public void reservarCocheDirector(String matricula) throws NotExistsException {
+    public void cancelarReserva(String matricula, String dniCliente) throws NotExistsException {
         Coche c = buscarCocheVenta(matricula);
-        cochesEnVenta.remove(matricula,c);
-        cochesReservados.put(matricula, c);
+        cochesReservados.remove(matricula, c);
+        cochesEnVenta.put(matricula, c);
+        Cliente a = buscarCliente(dniCliente);
+        a.borrarCocheReservado(c);
     }
 
     public void anyadirCliente(String dni, Cliente c) throws AlreadyExistsException {
@@ -249,15 +247,21 @@ public class Concesionario {
         clientes.put(dni, c);
     }
 
-    public void borrarCliente (String dni) throws NotExistsException {
-        if (clientes.containsKey(dni)) clientes.remove(dni);
-        else throw new NotExistsException("El cliente no se encuentra en la lista");
+    public void borrarCliente(String dni) throws NotExistsException, InvalidException {
+        Cliente c = buscarCliente(dni);
+        if (c.cochesReservados.isEmpty() && c.cochesComprados.isEmpty()) { //si el cliente no tiene coches reservado ni comprados
+            throw new InvalidException("No puede dar de baja el cliente porque tiene coches reservados");
+        }
+        clientes.remove(dni);
     }
+
 
     public Cliente buscarCliente(String dni) throws NotExistsException {
         if (clientes.containsKey(dni))
             return clientes.get(dni); //devuelve el valor asociado a la clave del dni
-        else {throw new NotExistsException("El cliente no existe");}
+        else {
+            throw new NotExistsException("El cliente no existe");
+        }
     }
 
     public void comprobarCliente(String dni) throws AlreadyExistsException {
@@ -266,23 +270,24 @@ public class Concesionario {
     }
 
 
-
     public void modificarDireccionCliente(String dni, String nuevaDireccion) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException {
         Cliente c = buscarCliente(dni);
-        if(c.getDireccion().equals(nuevaDireccion)) throw new AlreadyExistsException("La dirección es la misma que la anterior");
+        if (c.getDireccion().equals(nuevaDireccion))
+            throw new AlreadyExistsException("La dirección es la misma que la anterior");
         c.setDireccion(nuevaDireccion);
     }
 
     public void modificarTelefonoCliente(String dni, String nuevoTelefono) throws NotExistsException, IsEmptyException, NullException, AlreadyExistsException, InvalidException {
         Cliente c = buscarCliente(dni);
-        if(c.getTelefono().equals(nuevoTelefono)) throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
+        if (c.getTelefono().equals(nuevoTelefono))
+            throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
         c.setTelefono(nuevoTelefono);
     }
 
     public void imprimirClientes() {
         System.out.println("Listado de clientes");
-        if(clientes.isEmpty()) System.out.println("No hay clientes en la lista");
-        for (Cliente valor:clientes.values()) { //se obtienen los valores de cada persona
+        if (clientes.isEmpty()) System.out.println("No hay clientes en la lista");
+        for (Cliente valor : clientes.values()) { //se obtienen los valores de cada persona
             System.out.println(valor.toStringPersona());
         }
     }
@@ -291,55 +296,4 @@ public class Concesionario {
 
 
 
-
-
-
-
-
-
-
-
-    public Exposicion buscarExposicion(String numExposicion){
-        if(exposiciones.containsKey(numExposicion))
-            return exposiciones.get(numExposicion);
-        else return null;
-    }
-
-    public void anyadirCocheAExposicion(String matricula, String numExposicion) throws AlreadyExistsException, NotExistsException {
-        Coche c = buscarCocheVenta(matricula);
-        Exposicion e = buscarExposicion(numExposicion);
-        e.anyadirCocheAExposicion(c);
-    }
-
-    public void borrarCocheExposicion(Coche c, String numExposicion) throws AlreadyExistsException {
-        Exposicion e = buscarExposicion(numExposicion);
-        c = e.bucarCocheExposicion(c);
-        e.borrarCocheExposicion(c);
-    }
-
-    /*public void cambiarCocheExposicion(domain.Coche c, String numExposicion) {
-        domain.Exposicion e = buscarExposicion(numExposicion);
-        c = e.bucarCocheExposicion(c);
-
-
-    }*/
-
-    public void anyadirExposicion(String exposicion, Exposicion e){
-        exposiciones.put(exposicion, e);
-    }
-
-    public void borrarExposicion(String exposicion, Exposicion e){
-        exposiciones.remove(exposicion, e);
-    }
-
-    /*public void anyadirCocheAExposicion(domain.Coche c){
-        HashSet<domain.Coche> cochesEnExposicion= new HashSet<>();
-        for (domain.Coche item:listaCochesEnVenta()){
-            if (c.getMatricula() == item.getMatricula()){
-                cochesEnExposicion.add(c);
-            }
-        }
-        //buscar coche en hashmap lista coches en venta
-        //añadir coche a lista coches de X exposicion
-    }*/
 }

@@ -33,12 +33,12 @@ public class FormularioAltaVendedor {
                 a.validateDireccion(direccion);
                 System.out.println("--------------");
                 System.out.print("DNI: ");
-                String dni = in.next();
+                String dni = in.nextLine();
                 concesionario.comprobarVendedor(dni);
                 a.validateDni(dni);
                 System.out.println("--------------");
                 System.out.print("Teléfono móvil: ");
-                String telefono = in.next();
+                String telefono = in.nextLine();
                 a.validateTelefono(telefono);
                 System.out.println("--------------");
                 Vendedor v =  new Vendedor(nombre, direccion, dni, telefono);

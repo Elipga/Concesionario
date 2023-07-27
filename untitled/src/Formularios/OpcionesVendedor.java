@@ -59,37 +59,6 @@ public class OpcionesVendedor {
     }
 
 
-    /*public void nuevoVendedor() throws IsEmptyException, InvalidException, NullException {
-        boolean seguir = true;
-        Scanner in = new Scanner((System.in));
-
-        do {
-            try {
-                FormularioAltaVendedor alta = new FormularioAltaVendedor(concesionario);
-                Vendedor v = alta.nuevoVendedor();
-                concesionario.anyadirVendedor(v.getDni(), v);
-                System.out.println("Vendedor dado de alta con éxito");
-                System.out.println("--------------");
-
-                seguir = false;
-            } catch (AlreadyExistsException e) {
-                System.out.println(e.getMessage());
-                System.out.print("Pulse una tecla para volverlo a intentar o pulse 0 para salir: ");
-                String tecla = in.next();
-                System.out.println("--------------");
-
-                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
-            } catch (NotExistsException e) {
-                System.out.println(e.getMessage());
-                System.out.print("Pulse una tecla para volverlo a intentar o pulse 0 para salir: ");
-                String tecla = in.next();
-                System.out.println("--------------");
-
-                if (tecla.equals("0")) { seguir = false;} //si pulsa 0 te saca del bucle
-            }
-        }while (seguir == true);
-    }*/
-
     public void borrarVendedor() {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));

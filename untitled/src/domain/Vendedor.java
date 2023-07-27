@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Vendedor extends Persona{
     public ArrayList<Coche> cochesVendidos;
 
-    private double sueldo;
 
     public Vendedor(String nombre, String direccion, String dni, String telefono) throws IsEmptyException, NullException, InvalidException {
         super(nombre, direccion, dni, telefono);

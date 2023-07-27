@@ -20,7 +20,7 @@ public class ProgramaFinal {
 
         while (!identificacion.equals("4")) {
             menu();
-            identificacion = in.next();
+            identificacion = in.nextLine();
             System.out.println("--------------");
 
             switch (identificacion) {
