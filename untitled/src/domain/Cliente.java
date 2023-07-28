@@ -44,13 +44,4 @@ public class Cliente extends Persona {
         cochesReservados.remove(c);
     }
 
-    /*public Coche buscarCocheReservado(String matricula){
-        for (Coche coche : cochesReservados) {
-            if (coche.getMatricula().equals(coche.getMatricula())) {
-                return coche;
-            }
-        }
-        return new NotExistsException("El coche no se encuentra reservado");
-    }*/
-
 }
