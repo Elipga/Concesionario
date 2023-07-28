@@ -3,7 +3,6 @@ package Formularios;
 import Excepciones.*;
 import domain.Cliente;
 import domain.Concesionario;
-import domain.Vendedor;
 
 import java.util.Scanner;
 
@@ -280,5 +279,4 @@ public class OpcionesCliente {
 
         }
     }
-
 }

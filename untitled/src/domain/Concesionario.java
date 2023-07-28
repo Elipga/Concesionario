@@ -124,7 +124,6 @@ public class Concesionario {
         else {
             throw new NotExistsException("El coche no existe");
         }
-
     }
 
     public Coche buscarCocheVenta(String matricula) throws NotExistsException {
@@ -291,9 +290,4 @@ public class Concesionario {
             System.out.println(valor.toStringPersona());
         }
     }
-
-
-
-
-
 }

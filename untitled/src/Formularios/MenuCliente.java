@@ -2,7 +2,6 @@ package Formularios;
 
 import Excepciones.NotExistsException;
 import domain.Concesionario;
-
 import java.util.Scanner;
 
 public class MenuCliente {
@@ -61,7 +60,6 @@ public class MenuCliente {
         }while (seguir == true);
         return null;
     }
-
 
     public void menu(){
         System.out.println("Qué desea hacer?");

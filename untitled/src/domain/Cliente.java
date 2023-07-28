@@ -30,14 +30,14 @@ public class Cliente extends Persona {
         for(Coche item: cochesReservados){
             System.out.println(item.toStringCoche());
         }
-        if (cochesReservados.isEmpty()) System.out.println("El vendedor todavía no ha reservado ningún coche");
+        if (cochesReservados.isEmpty()) System.out.println("El cliente todavía no ha reservado ningún coche");
     }
 
     public void imprimirCochesComprados() {
         for(Coche item: cochesComprados){
             System.out.println(item.toStringCoche());
         }
-        if (cochesComprados.isEmpty()) System.out.println("El vendedor todavía no ha comprado ningún coche");
+        if (cochesComprados.isEmpty()) System.out.println("El cliente todavía no ha comprado ningún coche");
     }
 
     public void borrarCocheReservado(Coche c) {

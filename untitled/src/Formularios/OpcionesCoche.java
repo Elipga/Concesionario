@@ -147,39 +147,39 @@ public class OpcionesCoche {
         boolean seguir = true;
         Scanner in = new Scanner((System.in));
 
-            do {
-                try {
-                    System.out.print("Introduzca la matrícula del coche que va a ser vendido: ");
-                    String matriculaVender = in.next();
-                    System.out.println("--------------");
-                    concesionario.buscarCocheVenta(matriculaVender);
-                    concesionario.buscarVendedor(dniVendedor);
-                    System.out.print("Introduzca el DNI del cliente que va a comprar el coche: ");
-                    String dniCliente = in.next();
-                    concesionario.buscarCliente(dniCliente);
-                    System.out.println("--------------");
-                    concesionario.venderCocheVendedor(matriculaVender, dniVendedor, dniCliente);
-                    System.out.println("El coche ha sido vendido con éxito");
-                    System.out.println("--------------");
+        do {
+            try {
+                System.out.print("Introduzca la matrícula del coche que va a ser vendido: ");
+                String matriculaVender = in.next();
+                System.out.println("--------------");
+                concesionario.buscarCocheVenta(matriculaVender);
+                concesionario.buscarVendedor(dniVendedor);
+                System.out.print("Introduzca el DNI del cliente que va a comprar el coche: ");
+                String dniCliente = in.next();
+                concesionario.buscarCliente(dniCliente);
+                System.out.println("--------------");
+                concesionario.venderCocheVendedor(matriculaVender, dniVendedor, dniCliente);
+                System.out.println("El coche ha sido vendido con éxito");
+                System.out.println("--------------");
+                seguir = false;
+            } catch (NotExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.print("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir: ");
+                String tecla = in.next();
+                System.out.println("--------------");
+                if (tecla.equals("0")) {
                     seguir = false;
-                } catch (NotExistsException e) {
-                    System.out.println(e.getMessage());
-                    System.out.print("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir: ");
-                    String tecla = in.next();
-                    System.out.println("--------------");
-                    if (tecla.equals("0")) {
-                        seguir = false;
-                    }
-                } catch (AlreadyExistsException e) {
-                    System.out.println(e.getMessage());
-                    System.out.print("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
-                    String tecla = in.next();
-                    System.out.println("--------------");
-                    if (tecla.equals("0")) {
-                        seguir = false;
-                    }
                 }
-            } while (seguir == true);
+            } catch (AlreadyExistsException e) {
+                System.out.println(e.getMessage());
+                System.out.print("Pulse una tecla si quiere intentarlo de nuevo o pulse 0 para salir");
+                String tecla = in.next();
+                System.out.println("--------------");
+                if (tecla.equals("0")) {
+                    seguir = false;
+                }
+            }
+        } while (seguir == true);
     }
 
 
@@ -326,4 +326,3 @@ public class OpcionesCoche {
         }
     }
 }
-
