@@ -45,7 +45,6 @@ public class OpcionesCliente {
                     break;
             }
         }
-
     }
 
     public void menu() {

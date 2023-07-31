@@ -3,7 +3,6 @@ package domain;
 import Excepciones.*;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.TreeMap;
 
@@ -14,7 +13,6 @@ public class Concesionario {
     private HashMap<String, Coche> cochesVendidos;
     private HashMap<String, Cliente> clientes;
     private HashMap<String, Vendedor> vendedores;
-
     private TreeMap<Double, Vendedor> vendedoresPorVentas;
 
 
@@ -205,11 +203,11 @@ public class Concesionario {
 
     public void imprimirVendedoresVentas() {
         System.out.println("Listado de vendedores ordenados por ventas");
-        if (vendedoresPorVentas.isEmpty()) System.out.println("No hay vendedores en la lista");
         vendedoresPorVentas.clear(); //vacíar lista porque si no se queda los valores anteriores
         for (Vendedor valor : vendedores.values()) {
             vendedoresPorVentas.put(valor.sumatorioVentas(), valor);
         } //añade a la lista todos los vendedores con su sumatorio de ventas como clave
+        if (vendedoresPorVentas.isEmpty()) {System.out.println("No hay vendedores en la lista");}
         for (Vendedor valor : vendedoresPorVentas.values()) { //imprime los vendedores ordenados en orden descendente
             System.out.println("Total vendido: " + valor.sumatorioVentas() + "€");
             System.out.println(valor.toStringPersona());
