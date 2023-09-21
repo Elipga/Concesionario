@@ -30,7 +30,8 @@ public class Vendedor extends Persona{
 
     public void venderCoche(Coche c) throws AlreadyExistsException {
         for (Coche item:cochesVendidos){
-            if (c.getMatricula() == item.getMatricula()) throw new AlreadyExistsException("El coche ya ha sido vendido");
+            if (c.getMatricula() == item.getMatricula()) throw new AlreadyExistsException("El coche ya ha sido " +
+                    "vendido");
         }
         cochesVendidos.add(c);
     }

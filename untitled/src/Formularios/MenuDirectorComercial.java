@@ -16,7 +16,7 @@ public class MenuDirectorComercial {
         Scanner in = new Scanner((System.in));
         String opcion = "0";
 
-        while (!opcion.equals("4")){
+        while (!opcion.equals("5")){
             menu();
             opcion = in.next();
             System.out.println("--------------");
@@ -35,6 +35,10 @@ public class MenuDirectorComercial {
                     c.startOpcionesCliente();
                     break;
                 case "4":
+                    OpcionesExposicion d = new OpcionesExposicion(concesionario);
+                    d.startOpcionesExposicion();
+                    break;
+                case "5":
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 4");
@@ -49,7 +53,8 @@ public class MenuDirectorComercial {
         System.out.println("1- Gestión de vendedores");
         System.out.println("2- Gestión de coches");
         System.out.println("3- Gestión de clientes");
-        System.out.println("4- Salir");
+        System.out.println("4- Gestión de exposciones");
+        System.out.println("5- Salir");
         System.out.print("Introduzca un número: ");
     }
 }

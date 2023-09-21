@@ -14,6 +14,8 @@ public class Concesionario {
     private HashMap<String, Cliente> clientes;
     private HashMap<String, Vendedor> vendedores;
     private TreeMap<Double, Vendedor> vendedoresPorVentas;
+    private HashMap<String, Exposicion> exposiciones;
+
 
 
     public Concesionario() {
@@ -23,6 +25,7 @@ public class Concesionario {
         this.cochesVendidos = new HashMap<>();
         this.clientes = new HashMap<>();
         this.vendedores = new HashMap<>();
+        this.exposiciones = new HashMap<>();
         this.vendedoresPorVentas = new TreeMap<>(Collections.reverseOrder());
     }
 
@@ -56,32 +59,32 @@ public class Concesionario {
         return cochesConcesionario;
     }
 
-    public void anyadirCoche(String coche, Coche c) throws AlreadyExistsException {
-        if (cochesConcesionario.containsKey(coche))
+    public void anyadirCoche(String matricula, Coche c) throws AlreadyExistsException {
+        if (cochesConcesionario.containsKey(matricula))
             throw new AlreadyExistsException("El coche ya está en el concesionario");
-        cochesConcesionario.put(coche, c);
+        cochesConcesionario.put(matricula, c);
     }
 
-    public void anyadirCocheEnVenta(String coche, Coche c) throws AlreadyExistsException {
-        if (cochesEnVenta.containsKey(coche)) throw new AlreadyExistsException("El coche ya está en venta");
-        cochesEnVenta.put(coche, c);
+    public void anyadirCocheEnVenta(String matricula, Coche c) throws AlreadyExistsException {
+        if (cochesEnVenta.containsKey(matricula)) throw new AlreadyExistsException("El coche ya está en venta");
+        cochesEnVenta.put(matricula, c);
     }
 
-    public void anyadirCocheReservado(String coche, Coche c, Cliente a) throws AlreadyExistsException {
-        if (cochesReservados.containsKey(coche)) throw new AlreadyExistsException("El coche ya está reservado");
-        cochesReservados.put(coche, c);
+    public void anyadirCocheReservado(String matricula, Coche c, Cliente a) throws AlreadyExistsException {
+        if (cochesReservados.containsKey(matricula)) throw new AlreadyExistsException("El coche ya está reservado");
+        cochesReservados.put(matricula, c);
         a.anyadirCocheReservado(c);
     }
 
-    public void anyadirCocheVendido(String coche, Coche c) throws AlreadyExistsException {
-        if (cochesVendidos.containsKey(coche)) throw new AlreadyExistsException("El coche ya está vendido");
-        cochesVendidos.put(coche, c);
+    public void anyadirCocheVendido(String matricula, Coche c) throws AlreadyExistsException {
+        if (cochesVendidos.containsKey(matricula)) throw new AlreadyExistsException("El coche ya está vendido");
+        cochesVendidos.put(matricula, c);
     }
 
-    public void cocheVendido(String coche, Coche c) {
+    public void cocheVendido(String matricula, Coche c) {
         //comprobar que el coche esté en venta
-        cochesEnVenta.remove(coche, c); //quita el coche de la lista en venta
-        cochesVendidos.put(coche, c); //añade el coche a la lista de vendidos
+        cochesEnVenta.remove(matricula, c); //quita el coche de la lista en venta
+        cochesVendidos.put(matricula, c); //añade el coche a la lista de vendidos
     }
 
     public void imprimirCoches() {
@@ -286,6 +289,53 @@ public class Concesionario {
         if (clientes.isEmpty()) System.out.println("No hay clientes en la lista");
         for (Cliente valor : clientes.values()) { //se obtienen los valores de cada persona
             System.out.println(valor.toStringPersona());
+        }
+    }
+
+    public void anyadirExposicion(String numExpo, Exposicion e) throws AlreadyExistsException {
+        if(exposiciones.containsKey(numExpo)) throw new AlreadyExistsException("La exposición ya existe");
+        exposiciones.put(numExpo, e);
+    }
+
+    public void borrarExposicion(String numExpo) throws NotExistsException {
+        if(exposiciones.containsKey(numExpo)) exposiciones.remove(numExpo);
+        else throw new NotExistsException("La exposición no existe");
+    }
+
+    public Exposicion buscarExposicion(String numExpo) throws NotExistsException {
+        if (exposiciones.containsKey(numExpo))
+            return exposiciones.get(numExpo); //devuelve el valor asociado a la clave del numexpo
+        else {
+            throw new NotExistsException("La exposición no existe");
+        }
+    }
+
+    public  void modificarDireccionExposicion(String numExpo, String nuevaDireccion) throws AlreadyExistsException, NotExistsException {
+        Exposicion e = buscarExposicion(numExpo);
+        if (e.getDireccion().equals(nuevaDireccion))
+            throw new AlreadyExistsException("La dirección es la misma que la anterior");
+        e.setDireccion(nuevaDireccion);
+    }
+
+    public void modificarTelefonoExposición(String numExpo, String nuevoTelefono) throws AlreadyExistsException, NotExistsException {
+        Exposicion e = buscarExposicion(numExpo);
+        if (e.getTelefono().equals(nuevoTelefono))
+            throw new AlreadyExistsException("El teléfono es el mismo que el anterior");
+        e.setTelefono(nuevoTelefono);
+
+    }
+
+    public void cambiarCoche(Exposicion anteriorExpo, Exposicion nuevaExpo, String matricula, Coche c) throws NotExistsException, AlreadyExistsException {
+        anteriorExpo.buscarCoche(matricula);
+        anteriorExpo.borrarCoche(matricula, c);
+        nuevaExpo.anyadirCoche(matricula,c );
+    }
+
+    public void imprimirExposiciones(){
+        System.out.println("Listado de exposiciones");
+        if (clientes.isEmpty()) System.out.println("No hay exposiciones en la lista");
+        for (Exposicion valor : exposiciones.values()) {
+            System.out.println(valor.toString());
         }
     }
 }

@@ -92,7 +92,7 @@ public class OpcionesCoche {
         System.out.println("4- Cancelar una reserva");
         System.out.println("5- Consultar listas de coches");
         System.out.println("6- Salir");
-        System.out.print("Introduzca un número");
+        System.out.print("Introduzca un número: ");
     }
 
     public void menuAltaCoche(){
@@ -138,7 +138,6 @@ public class OpcionesCoche {
                     break;
 
             }
-
         }
     }
 

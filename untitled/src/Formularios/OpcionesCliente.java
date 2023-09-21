@@ -190,7 +190,7 @@ public class OpcionesCliente {
                 case "3":
                     break;
                 default:
-                    System.out.println("Debe introducir una de las opciones: del 1 al 4");
+                    System.out.println("Debe introducir una de las opciones: del 1 al 3");
                     System.out.println("--------------");
                     seguir = false;
                     break;

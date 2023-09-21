@@ -6,7 +6,7 @@ import Excepciones.NullException;
 
 import java.util.*;
 
-public abstract class Coche {
+public class Coche {
     private String marca;
     private String modelo;
     private String matricula;

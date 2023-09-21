@@ -19,7 +19,7 @@ public class MenuVendedor {
         String dni = identificarseVendedor();
 
 
-        while (!opcionVendedor.equals("3")){
+        while (!opcionVendedor.equals("4")){
             menu();
             opcionVendedor = in.next();
             System.out.println("--------------");
@@ -35,6 +35,10 @@ public class MenuVendedor {
                     b.startOpcionesCliente();
                     break;
                 case "3":
+                    OpcionesExposicion d = new OpcionesExposicion(concesionario);
+                    d.startOpcionesExposicion();
+                    break;
+                case "4":
                     break;
                 default:
                     System.out.println("Debe introducir una de las opciones: del 1 al 3");
@@ -75,7 +79,8 @@ public class MenuVendedor {
         System.out.println("Elija una opción: ");
         System.out.println("1- Gestión de coches");
         System.out.println("2- Gestión de clientes");
-        System.out.println("3- Salir");
+        System.out.println("3- Gestión de exposciones");
+        System.out.println("4- Salir");
         System.out.print("Introduzca un número: ");
     }
 }

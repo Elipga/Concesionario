@@ -5,6 +5,7 @@ import Excepciones.IsEmptyException;
 import Excepciones.NullException;
 
 public class Validaciones {
+    //esta clase se ha hecho para no crear un objeto vacío en los formularios
 
     //COCHE
 
@@ -66,5 +67,9 @@ public class Validaciones {
         if(nombre == null) throw new NullException("Nombre no puede ser null");
         if(nombre.isEmpty()) throw new IsEmptyException("Nombre no puede quedar vacío");
         if(!nombre.matches("[a-zA-Z ]+")) throw new InvalidException("El nombre se compone de letras (sin tildes)");
+    }
+
+    public void validateNumExpo(String numExpo) throws InvalidException {
+        if (!numExpo.matches("^[0-9]+$")) throw new InvalidException("Debe introducir numeros");
     }
 }
